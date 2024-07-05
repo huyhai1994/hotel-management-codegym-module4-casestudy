@@ -5,9 +5,7 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 
 public interface IUserService {
-    Response register(User user);
 
-    Response login(LoginRequest loginRequest);
 
     Response getAllUsers();
 
