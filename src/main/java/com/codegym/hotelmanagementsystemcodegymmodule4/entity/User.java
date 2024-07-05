@@ -1,31 +1,35 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-
+@Data
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
-public class User {
+public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String username;
-    private String password;
+    private Long id;
+    @NotBlank(message = "Email is required")
+    @Column(unique = true)
     private String email;
+
+    @NotBlank(message = "Name is required")
+    private String name;
+
+    @NotBlank(message = "Phone Number is required")
     private String phoneNumber;
-    private String address;
-    private String avatar;
-    private Boolean status;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+
+    @NotBlank(message = "Password is required")
+    private String password;
+
+    private String role;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
+
 }
