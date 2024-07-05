@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>BootStrap 5 Project Landing
+        Page</title>
+</head>
+card-img-top
+<body>
+<!-- TODO: Step1 -->
+<!-- nav-bar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img
+                src="https://thumbs.dreamstime.com/b/luxury-hotel-crown-key-letter-h-monogram-logo-laurel-elegant-beautiful-round-vector-emblem-sign-royalty-restaurant-97215514.jpg"
+                id="logo" alt="">
+            </span></a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"
+             id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- TODO: Step2 -->
+<!-- Carosels -->
+<div id="carouselExampleCaptions"
+     class="carousel slide"
+     data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"></button>
+        <button type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.pexels.com/photos/2417842/pexels-photo-2417842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                 class="d-block w-100 h-100"
+                 alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Your Dream House</h5>
+                <p>Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit.
+                    Culpa, incidunt consequuntur!
+                    Porro
+                    nam hic cumque?</p>
+                <p class="btn btn-warning mt-3"
+                   id="" href="#">Learn More</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg?auto=compress&cs=tinysrgb&w=600"
+                 class="d-block w-100 h-100"
+                 alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Always Dedicated</h5>
+                <p>Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit.
+                    Culpa, incidunt consequuntur!
+                    Porro
+                    nam hic cumque?</p>
+                <p class="btn btn-warning mt-3"
+                   id="" href="#">Learn More</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.pexels.com/photos/244133/pexels-photo-244133.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                 class="d-block w-100 h-100"
+                 alt="..."
+                 style="object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>True Construction</h5>
+                <p>Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit.
+                    Culpa, incidunt consequuntur!
+                    Porro
+                    nam hic cumque?</p>
+                <p class="btn btn-warning mt-3"
+                   id="" href="#">Learn More</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"
+              aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon"
+              aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- about section -->
+<section id="about"
+         class="about-section-padding mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-12">
+                <div class="about-img">
+                    <img src="https://www.hoteljob.vn/files/Ni%20-%20%E1%BA%A2nh%20HTJ/2018/Th%C3%A1ng%206/BS%20t6/ban-mo-ta-cong-viec-giam-sat-le-tan-khach-san.jpg"
+                         alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                <div class="about-text">
+                    <h2> We provide Best Quality
+                        <br>
+                        Service Ever
+                    </h2>
+                    <p>Lorem ipsum dolor sit, amet
+                        consectetur adipisicing
+                        elit. Enim, doloribus unde
+                        qui quas
+                        dolorem magnam maiores,
+                        voluptatem earum illo
+                        assumenda sequi iure iste
+                        voluptate, sapiente
+                        nemo laboriosam numquam
+                        repellat recusandae minima
+                        placeat tenetur pariatur
+                        ipsum expedita?
+                        Ab tenetur recusandae
+                        rerum sequi minus mollitia
+                        doloremque nisi maxime
+                        ipsa, autem et
+                        eveniet.</p>
+                </div>
+                <a href="#"
+                   class="btn btn-warning">Learn
+                    More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service section -->
+<section id="services"
+         class="services section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header text-center pb-5">
+                    <h2>Our Services</h2>
+                    <p>Lorem ipsum dolor sit amet
+                        consectetur adipisicing
+                        elit.<br> Hic non maiores
+                        accusamus
+                        exercitationem. Totam,
+                        explicabo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-white text-center bg-dark pb-2">
+                    <div class="card-body">
+                        <i class="bi bi-subtract"></i>
+                        <h3 class="card-title">
+                            Best Quality
+                        </h3>
+                        <p class="lead">Lorem
+                            ipsum dolor, sit amet
+                            consectetur
+                            adipisicing elit. Unde
+                            doloremque
+                            assumenda aliquid
+                            perferendis, soluta
+                            sint enim illo.
+                            Ducimus neque illum,
+                            odio sapiente
+                            expedita cumque
+                            deleniti?</p>
+                        <button class="btn btn-warning text-dark">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-white text-center bg-dark pb-2">
+                    <div class="card-body">
+                        <i class="bi bi-subtract"></i>
+                        <h3 class="card-title">
+                            Best Quality
+                        </h3>
+                        <p class="lead">Lorem
+                            ipsum dolor, sit amet
+                            consectetur
+                            adipisicing elit. Unde
+                            doloremque
+                            assumenda aliquid
+                            perferendis, soluta
+                            sint enim illo.
+                            Ducimus neque illum,
+                            odio sapiente
+                            expedita cumque
+                            deleniti?</p>
+                        <button class="btn btn-warning text-dark">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="card text-white text-center bg-dark pb-2">
+                    <div class="card-body">
+                        <i class="bi bi-subtract"></i>
+                        <h3 class="card-title">
+                            Best Quality
+                        </h3>
+                        <p class="lead">Lorem
+                            ipsum dolor, sit amet
+                            consectetur
+                            adipisicing elit. Unde
+                            doloremque
+                            assumenda aliquid
+                            perferendis, soluta
+                            sint enim illo.
+                            Ducimus neque illum,
+                            odio sapiente
+                            expedita cumque
+                            deleniti?</p>
+                        <button class="btn btn-warning text-dark">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- room section -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="section-header text-center pb-5">
+                <h2>Our Projects</h2>
+                <p>Lorem ipsum dolor sit amet
+                    consectetur adipisicing
+                    elit.<br> Hic non maiores
+                    accusamus
+                    exercitationem. Totam,
+                    explicabo.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="card text-light text-center bg-white pb-2">
+                <img src="https://images.unsplash.com/flagged/photo-1556438758-8d49568ce18e?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2luZ2xlJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D"
+                     alt="" class="card-img-top">
+
+                <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+
+                        <h3 class="card-title">
+                            Phòng đơn
+                        </h3>
+                        <p class="lead">
+                            Lorem, ipsum dolor sit
+                            amet consectetur
+                            adipisicing elit.
+                            Labore fugiat ut neque
+                            tempora,
+                            placeat sequi.
+                        </p>
+                        <button class="btn btn-warning text-dark">
+                            Learn More
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="card text-light text-center bg-white pb-2">
+                <img src="https://watermark.lovepik.com/photo/20211120/large/lovepik-high-hotel-room-double-room-picture_500530788.jpg"
+                     alt="" class="card-img-top">
+                <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+
+                        <h3 class="card-title">
+                            Phòng đôi
+                        </h3>
+                        <p class="lead">
+                            Lorem, ipsum dolor sit
+                            amet consectetur
+                            adipisicing elit.
+                            Labore fugiat ut neque
+                            tempora,
+                            placeat sequi.
+                        </p>
+                        <button class="btn btn-warning text-dark">
+                            Learn More
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="card text-light text-center bg-white pb-2">
+                <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSav4_FKsTwenw1n8W9p_SAjrLPrpKa_KEVCQ&s"
+                        alt=""
+                        class="card-img-top">
+                <div class="card-body text-dark">
+                    <div class="img-area mb-4">
+
+                        <h3 class="card-title">
+                            Phòng VIP
+                        </h3>
+                        <p class="lead">
+                            Lorem, ipsum dolor sit
+                            amet consectetur
+                            adipisicing elit.
+                            Labore fugiat ut neque
+                            tempora,
+                            placeat sequi.
+                        </p>
+                        <button class="btn btn-warning text-dark">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- Team section -->
+<section id="team" class="team section-padding">
+    <div class="container">
+
+    </div>
+</section>
+<!-- footer -->
+<footer class="bg-dark p-2 text-center">
+    <div class="container">
+        <p class="text-white">
+            &copy; 2024w My Website. All rights
+            reserved. Designed by <a href="#"
+                                     target="_blank">CGHN
+            CO224G1
+            N1</a>.
+        </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
