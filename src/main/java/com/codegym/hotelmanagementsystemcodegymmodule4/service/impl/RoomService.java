@@ -6,6 +6,7 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.BookingRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.RoomRepository;
+import com.codegym.hotelmanagementsystemcodegymmodule4.service.AwsS3Service;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;

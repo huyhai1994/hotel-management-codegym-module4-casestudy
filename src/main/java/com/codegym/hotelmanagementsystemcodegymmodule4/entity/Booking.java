@@ -1,6 +1,8 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
 
@@ -14,7 +16,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "check in date is required")
+    @NotNull
     private LocalDate checkInDate;
 
     @Future(message = "check out date must be in the future")
