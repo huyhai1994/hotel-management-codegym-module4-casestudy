@@ -1,7 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.ArrayList;
