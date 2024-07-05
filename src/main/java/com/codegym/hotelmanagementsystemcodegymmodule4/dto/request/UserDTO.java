@@ -1,31 +1,27 @@
-package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
+package com.codegym.hotelmanagementsystemcodegymmodule4.dto.request;
 
-import jakarta.persistence.*;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
-
-@Entity
-@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+public class UserDTO {
+    private Long id;
     private String username;
     private String password;
     private String email;
     private String phoneNumber;
     private String address;
-    private String avatar;
+    private MultipartFile avatar;
     private Boolean status;
-    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
 }
