@@ -6,7 +6,6 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.BookingRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.RoomRepository;
-import com.codegym.hotelmanagementsystemcodegymmodule4.service.AwsS3Service;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +23,14 @@ public class RoomService  implements IRoomService {
     private RoomRepository roomRepository;
     @Autowired
     private BookingRepository bookingRepository;
-    @Autowired
-    private AwsS3Service awsS3Service;
+
 
     @Override
     public Response addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice, String description) {
         Response response = new Response();
 
         try {
-            String imageUrl = awsS3Service.saveImageToS3(photo);
             Room room = new Room();
-            room.setRoomPhotoUrl(imageUrl);
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setRoomDescription(description);
@@ -101,7 +97,6 @@ public class RoomService  implements IRoomService {
         try {
             String imageUrl = null;
             if (photo != null && !photo.isEmpty()) {
-                imageUrl = awsS3Service.saveImageToS3(photo);
             }
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
             if (roomType != null) room.setRoomType(roomType);
