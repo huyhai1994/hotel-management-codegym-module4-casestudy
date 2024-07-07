@@ -11,56 +11,58 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
           rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>BootStrap 5 Project Landing
-        Page</title>
+    <title>Hotel Management Project</title>
 </head>
-card-img-top
 <body>
-<!-- TODO: Step1 -->
-<!-- nav-bar -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+<!-- TODO: nav-bar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><img
-                src="https://thumbs.dreamstime.com/b/luxury-hotel-crown-key-letter-h-monogram-logo-laurel-elegant-beautiful-round-vector-emblem-sign-royalty-restaurant-97215514.jpg"
-                id="logo" alt="">
-            </span></a>
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+        <!--        TODO: LOGO-->
+        <a class="navbar-brand fs-1" href="#"> hotel navbar</a>
+        <!--TODO: toggler button-->
+        <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse"
-             id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#contact">Contact</a>
-                </li>
-            </ul>
+        <!--        TODO: side-bar -->
+        <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <!--TODO: side bar header-->
+            <div class="offcanvas-header text-light border-bottom">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">hotel navbar</h5>
+                <!--TODO: x button to close the side bar-->
+                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <!--TODO: sidebar body-->
+            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+                <div class="d-flex flex-column flex-lg-row justify-content-center
+align-items-center gap-3 fs-5 flex-grow-1 pe-3">
+                    <!--TODO: login/signup-->
+                    <a href="#login" class="text-white">Login</a>
+                    <a href="#signup" class="text-white text-decoration-none px-3 py-1 rounded-4"
+                       style="background-color: #f94ca4">SignUp</a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
-<!-- TODO: Step2 -->
-<!-- Carosels -->
+<!-- TODO: Carousel -->
 <div id="carouselExampleCaptions"
      class="carousel slide"
      data-bs-ride="carousel">
@@ -108,7 +110,7 @@ card-img-top
                     Porro
                     nam hic cumque?</p>
                 <p class="btn btn-warning mt-3"
-                   id="" href="#">Learn More</p>
+                   href="#">Learn More</p>
             </div>
         </div>
         <div class="carousel-item">
@@ -145,15 +147,16 @@ card-img-top
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<!-- about section -->
+<!-- TODO: about section -->
 <section id="about"
          class="about-section-padding mt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
-                <div class="about-img">
-                    <img src="https://www.hoteljob.vn/files/Ni%20-%20%E1%BA%A2nh%20HTJ/2018/Th%C3%A1ng%206/BS%20t6/ban-mo-ta-cong-viec-giam-sat-le-tan-khach-san.jpg"
-                         alt="" class="img-fluid">
+                <div>
+                    <img id="about-img"
+                         src="https://swinburne-vn.edu.vn/wp-content/uploads/nganh-quan-tri-khach-san3.jpeg"
+                         alt="">
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
@@ -188,7 +191,7 @@ card-img-top
     </div>
 </section>
 
-<!-- Service section -->
+<!-- TODO: Service section -->
 <section id="services"
          class="services section-padding">
     <div class="container">
@@ -320,7 +323,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
 
                     </div>
@@ -346,7 +349,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
 
                     </div>
@@ -374,7 +377,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
                     </div>
                 </div>
