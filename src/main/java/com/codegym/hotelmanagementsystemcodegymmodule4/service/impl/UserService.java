@@ -161,7 +161,7 @@ public class UserService implements IUserService {
         userDTO.setBirthday(user.getBirthday());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setAvatar(user.getAvatar());
-        userDTO.setRole(user.getRole());
+        userDTO.setRole(user.getRoles().toString());
         return userDTO;
     }
 }
