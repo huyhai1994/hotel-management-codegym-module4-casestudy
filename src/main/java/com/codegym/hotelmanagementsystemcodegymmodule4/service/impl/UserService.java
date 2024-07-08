@@ -1,23 +1,18 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
-import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
-import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
@@ -40,6 +35,10 @@ public class UserService implements IUserService {
             response.setMessage("Error getting all users " + e.getMessage());
         }
         return response;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -120,7 +119,7 @@ public class UserService implements IUserService {
         Response response = new Response();
 
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new OurException("User Not Found"));
+            User user = userRepository.findByEmail(email);
             UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
             response.setStatusCode(200);
             response.setMessage("successful");
@@ -142,9 +141,6 @@ public class UserService implements IUserService {
     @Override
     public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if (!userOptional.isPresent()) {
-            throw new UserNotFoundException("User not found with id: " + userId);
-        }
 
         User user = userOptional.get();
         user.setName(updateUserDTO.getName());
