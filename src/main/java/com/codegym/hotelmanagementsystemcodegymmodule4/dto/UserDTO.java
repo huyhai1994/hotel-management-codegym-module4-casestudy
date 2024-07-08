@@ -3,6 +3,7 @@ package com.codegym.hotelmanagementsystemcodegymmodule4.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class UserDTO {
     private String name;
     private String phoneNumber;
     private String roles;
+    private String password;
+    private LocalDate birthday;
+    private String avatar;
+    private String role;
     private List<BookingDTO> bookings = new ArrayList<>();
 
 }

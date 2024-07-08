@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -32,6 +33,12 @@ public class User {
     /*TODO: s-step 1*/
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    private LocalDate birthday;
+
+    private String avatar;
+
+    private String role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
