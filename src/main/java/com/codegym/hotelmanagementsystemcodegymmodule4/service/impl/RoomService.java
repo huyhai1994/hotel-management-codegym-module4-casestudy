@@ -6,25 +6,27 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.BookingRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.RoomRepository;
-import com.codegym.hotelmanagementsystemcodegymmodule4.service.AwsS3Service;
+import com.codegym.hotelmanagementsystemcodegymmodule4.service.IAwsS3Service;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class RoomService  implements IRoomService {
+@Service
+public class RoomService implements IRoomService {
 
     @Autowired
     private RoomRepository roomRepository;
     @Autowired
     private BookingRepository bookingRepository;
     @Autowired
-    private AwsS3Service awsS3Service;
+    private IAwsS3Service awsS3Service;
 
     @Override
     public Response addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice, String description) {
@@ -103,10 +105,14 @@ public class RoomService  implements IRoomService {
                 imageUrl = awsS3Service.saveImageToS3(photo);
             }
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
-            if (roomType != null) room.setRoomType(roomType);
-            if (roomPrice != null) room.setRoomPrice(roomPrice);
-            if (description != null) room.setRoomDescription(description);
-            if (imageUrl != null) room.setRoomPhotoUrl(imageUrl);
+            if (roomType != null)
+                room.setRoomType(roomType);
+            if (roomPrice != null)
+                room.setRoomPrice(roomPrice);
+            if (description != null)
+                room.setRoomDescription(description);
+            if (imageUrl != null)
+                room.setRoomPhotoUrl(imageUrl);
 
             Room updatedRoom = roomRepository.save(room);
             RoomDTO roomDTO = Utils.mapRoomEntityToRoomDTO(updatedRoom);

@@ -29,7 +29,6 @@ public class BookingService implements IBookingService {
     @Autowired
     private UserRepository userRepository;
 
-
     @Override
     public Response saveBooking(Long roomId, Long userId, Booking bookingRequest) {
 

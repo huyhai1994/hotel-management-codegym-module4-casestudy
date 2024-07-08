@@ -16,8 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 
 @Service
-public class AwsS3Service {
-
+public class AwsS3Service implements IAwsS3Service {
     //    private final String bucketName = "phegon-hotel-images";
     private final String bucketName = "hotel-mongo";
 
@@ -27,13 +26,11 @@ public class AwsS3Service {
     @Value("${aws.s3.secret.key}")
     private String awsS3SecretKey;
 
+    @Override
     public String saveImageToS3(MultipartFile photo) {
         String s3LocationImage = null;
-
         try {
-
             String s3Filename = photo.getOriginalFilename();
-
             BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsS3AccessKey, awsS3SecretKey);
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))

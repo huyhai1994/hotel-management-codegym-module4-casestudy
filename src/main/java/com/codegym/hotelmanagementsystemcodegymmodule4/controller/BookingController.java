@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/bookings")
-
 public class BookingController {
 
     @Autowired
     private IBookingService bookingService;
 
     @PostMapping("/book-room/{roomId}/{userId}")
-
     public ResponseEntity<Response> saveBookings(@PathVariable Long roomId,
                                                  @PathVariable Long userId,
                                                  @RequestBody Booking bookingRequest) {

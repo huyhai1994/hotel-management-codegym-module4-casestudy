@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-@Service
 
+@Service
 public interface IRoomService {
 
     Response addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice, String description);
