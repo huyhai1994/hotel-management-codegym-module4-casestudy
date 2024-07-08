@@ -1,6 +1,5 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.LoginRequest;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
@@ -9,15 +8,15 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService  implements IUserService {
+public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
-
 
 
 

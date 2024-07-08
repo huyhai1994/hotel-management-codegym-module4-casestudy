@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+
 @Service
-public class RoomService  implements IRoomService {
+public class RoomService implements IRoomService {
+
 
     @Autowired
     private RoomRepository roomRepository;
@@ -95,14 +97,12 @@ public class RoomService  implements IRoomService {
         Response response = new Response();
 
         try {
-            String imageUrl = null;
-            if (photo != null && !photo.isEmpty()) {
-            }
+
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
             if (roomType != null) room.setRoomType(roomType);
             if (roomPrice != null) room.setRoomPrice(roomPrice);
             if (description != null) room.setRoomDescription(description);
-            if (imageUrl != null) room.setRoomPhotoUrl(imageUrl);
+
 
             Room updatedRoom = roomRepository.save(room);
             RoomDTO roomDTO = Utils.mapRoomEntityToRoomDTO(updatedRoom);

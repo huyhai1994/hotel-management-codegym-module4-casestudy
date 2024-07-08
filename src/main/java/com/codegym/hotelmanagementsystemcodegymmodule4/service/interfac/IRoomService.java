@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-
 public interface IRoomService {
 
     Response addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice, String description);
