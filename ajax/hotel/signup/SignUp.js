@@ -1,29 +1,37 @@
-$(document).ready(function() {
-    $('#signupForm').submit(function(e) {
+$(document).ready(function () {
+    $('#signupForm').submit(function (e) {
         e.preventDefault();
 
-        let name = $('#name').val();
-        let email = $('#email').val();
-        let phone = $('#phone').val();
-        let password = $('#password').val();
+        let name = document.getElementById(
+            'name').value;
+        let phone = document.getElementById('phone').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        let user = {
+            name: name,
+            email: email,
+            phoneNumber: phone,
+            password: password,
+            birthday: null,
+            avatar: '124.jpg'
+        }
 
         $.ajax({
-            type: 'POST',
-            url: '',
-            data: {
-                name: name,
-                email: email,
-                phone: phone,
-                password: password
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
-            success: function(response) {
-                 if (response.success) {
+            url: 'http://localhost:8080/api/auth/register',
+            method: 'POST',
+            data: JSON.stringify(user),
+            success: function (response) {
+                if (response.success) {
                     $('#message').text(response.message);
-                 } else {
+                } else {
                     $('#message').text(response.message);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('AJAX Error: ' + status, error);
                 $('#message').text('Error occurred, please try again.');
             }
