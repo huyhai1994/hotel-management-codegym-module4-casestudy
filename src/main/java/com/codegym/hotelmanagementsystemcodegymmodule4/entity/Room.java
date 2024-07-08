@@ -1,5 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Table(name = "rooms")
 public class Room {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +24,7 @@ public class Room {
     private String roomDescription;
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
+
 
     @Override
     public String toString() {
