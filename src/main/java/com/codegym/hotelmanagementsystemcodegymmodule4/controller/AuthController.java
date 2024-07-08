@@ -1,6 +1,7 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.config.UserServices;
+import com.codegym.hotelmanagementsystemcodegymmodule4.config.service.JwtResponse;
 import com.codegym.hotelmanagementsystemcodegymmodule4.config.service.JwtService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,6 @@ public class AuthController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userServices.findUserByEmail(user.getEmail());
         /*TODO: Tra ve Jwt Response sau khi dang nhap thanh cong*/
-        return ResponseEntity.ok(new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getUsername(), userDetails.getAuthorities()));
+        return ResponseEntity.ok(new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getAuthorities()));
     }
 }

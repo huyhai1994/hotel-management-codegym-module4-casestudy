@@ -1,7 +1,6 @@
-package com.codegym.hotelmanagementsystemcodegymmodule4;
+package com.codegym.hotelmanagementsystemcodegymmodule4.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-/*TODO: s-step7*/
 public class SecurityInit extends AbstractSecurityWebApplicationInitializer {
 }
