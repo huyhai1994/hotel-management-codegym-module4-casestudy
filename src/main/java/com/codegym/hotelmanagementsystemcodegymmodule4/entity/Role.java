@@ -1,18 +1,14 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
-//@Entity
-//@Table(name = "roles")
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Getter
-//@Setter
-//@Builder
+@Entity
+@Data
+@Table(name = "roles")
 public class Role {
-   // @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private Long roleId;
-   // private String roleName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 }
