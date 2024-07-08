@@ -1,33 +1,26 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    const email = formData.get('email');
-    const password = formData.get('password');
-
-    const apiUrl = 'http://localhost:8080/api/login';
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', apiUrl);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('message').innerHTML = '<p>Login successful!</p>';
-        } else {
-            document.getElementById('message').innerHTML = '<p>Login failed. Please check your credentials.</p>';
-        }
+// TODO: JSON.stringify de ep kieu tu Object
+//      sang JSON vi javascript khong ho tro JSON
+function login() {
+    // lay du lieu
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let user = {
+        email: email, password: password,
     };
-
-    xhr.onerror = function() {
-        console.error('Login error:', xhr.statusText);
-        document.getElementById('message').innerHTML = '<p>Login failed. Please check your credentials.</p>';
-    };
-
-    const data = JSON.stringify({ email: email, password: password });
-    xhr.send(data);
-});
-
-
-
-
+    $.ajax({
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        url: 'http://localhost:8080/api/auth/login',
+        method: 'POST',
+        data: JSON.stringify(user),
+        success: function (data) {
+            // thay vi ghi vao console ghi vao local storage
+            // console.log(data)
+            localStorage.setItem('token', JSON.stringify(data));
+            //     chuyen trang sang customer
+            window.location.href = 'hello.html';
+        },
+    });
+}

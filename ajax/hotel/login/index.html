@@ -7,7 +7,6 @@
     <title>Login Form</title>
     <link rel="stylesheet" href="Css.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
 </head>
 <body>
 <div class="container">
@@ -24,12 +23,12 @@
             <input type="password" id="password"
                    name="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="button" onclick="login()">
+            Login
+        </button>
         <p id="message"></p>
     </form>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="Login.js"></script>
 </body>
 </html>
