@@ -8,7 +8,6 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +16,6 @@ import java.util.List;
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
-
-
-
 
 
     @Override
@@ -118,7 +114,7 @@ public class UserService implements IUserService {
         Response response = new Response();
 
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new OurException("User Not Found"));
+            User user = userRepository.findByEmail(email);
             UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
             response.setStatusCode(200);
             response.setMessage("successful");
