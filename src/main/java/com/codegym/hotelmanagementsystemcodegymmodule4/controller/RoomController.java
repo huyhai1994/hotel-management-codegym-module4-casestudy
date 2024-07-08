@@ -100,7 +100,7 @@ public class RoomController {
 
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter?f={roomStatus}")
             public ResponseEntity<Response> findRoomByRoomStatus(@RequestParam(value = "f") Boolean roomStatus){
         Response response = roomService.findRoomByRoomStatus(roomStatus);
         return ResponseEntity.status(response.getStatusCode()).body(response);
