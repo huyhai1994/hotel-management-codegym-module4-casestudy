@@ -1,5 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
+
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IBookingService;
@@ -16,7 +17,6 @@ public class BookingController {
     private IBookingService bookingService;
 
     @PostMapping("/book-room/{roomId}/{userId}")
-
     public ResponseEntity<Response> saveBookings(@PathVariable Long roomId,
                                                  @PathVariable Long userId,
                                                  @RequestBody Booking bookingRequest) {
@@ -28,7 +28,6 @@ public class BookingController {
     }
 
     @GetMapping("/all")
-
     public ResponseEntity<Response> getAllBookings() {
         Response response = bookingService.getAllBookings();
         return ResponseEntity.status(response.getStatusCode()).body(response);
@@ -41,7 +40,6 @@ public class BookingController {
     }
 
     @DeleteMapping("/cancel/{bookingId}")
-
     public ResponseEntity<Response> cancelBooking(@PathVariable Long bookingId) {
         Response response = bookingService.cancelBooking(bookingId);
         return ResponseEntity.status(response.getStatusCode()).body(response);

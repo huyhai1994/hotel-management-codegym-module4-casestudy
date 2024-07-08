@@ -1,5 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
+
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IBookingService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
@@ -98,4 +99,6 @@ public class RoomController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
 
     }
+
+
 }
