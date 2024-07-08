@@ -1,5 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -16,5 +17,4 @@ public class RoomDTO {
     private String roomPhotoUrl;
     private String roomDescription;
     private List<BookingDTO> bookings;
-
 }

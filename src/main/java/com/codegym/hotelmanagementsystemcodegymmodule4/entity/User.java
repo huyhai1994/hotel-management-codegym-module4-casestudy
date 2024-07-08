@@ -6,14 +6,17 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "users")
-public class User  {
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Email is required")
     @Column(unique = true)
     private String email;
@@ -26,10 +29,13 @@ public class User  {
 
     @NotBlank(message = "Password is required")
     private String password;
-
-    private String role;
+    /*TODO: s-step 1*/
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 
+
 }
+

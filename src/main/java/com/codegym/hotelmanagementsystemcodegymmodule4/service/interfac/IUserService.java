@@ -1,11 +1,10 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac;
 
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.LoginRequest;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
-import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface IUserService {
-
 
     Response getAllUsers();
 
@@ -16,4 +15,5 @@ public interface IUserService {
     Response getUserById(String userId);
 
     Response getMyInfo(String email);
+
 }

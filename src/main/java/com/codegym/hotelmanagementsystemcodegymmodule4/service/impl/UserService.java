@@ -1,6 +1,5 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.LoginRequest;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
@@ -14,13 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService  implements IUserService {
+public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
-
-
-
-
 
 
     @Override
@@ -119,7 +114,7 @@ public class UserService  implements IUserService {
         Response response = new Response();
 
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new OurException("User Not Found"));
+            User user = userRepository.findByEmail(email);
             UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
             response.setStatusCode(200);
             response.setMessage("successful");

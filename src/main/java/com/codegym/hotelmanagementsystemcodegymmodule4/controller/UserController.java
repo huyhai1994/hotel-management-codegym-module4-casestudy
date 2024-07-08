@@ -1,11 +1,12 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
+
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/users")
@@ -17,7 +18,6 @@ public class UserController {
 
 
     @GetMapping("/all")
-
     public ResponseEntity<Response> getAllUsers() {
         Response response = userService.getAllUsers();
         return ResponseEntity.status(response.getStatusCode()).body(response);
@@ -42,5 +42,6 @@ public class UserController {
 //        Response response = userService.getUserBookingHistory(userId);
 //        return ResponseEntity.status(response.getStatusCode()).body(response);
 //    }
+
 
 }
