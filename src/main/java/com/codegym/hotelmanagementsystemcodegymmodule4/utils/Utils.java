@@ -35,7 +35,8 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
-        userDTO.setRole(user.getRole());
+        userDTO.setBirthday(user.getBirthday());
+        userDTO.setAvatar((user.getAvatar()));
         return userDTO;
     }
 

@@ -31,6 +31,7 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
 
+    @NotBlank(message = "Birthday is required")
     private LocalDate birthday;
 
     private String avatar;

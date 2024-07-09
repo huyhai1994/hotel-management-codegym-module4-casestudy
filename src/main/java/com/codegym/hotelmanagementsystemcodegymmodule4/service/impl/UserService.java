@@ -1,11 +1,9 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
 import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
-import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
@@ -150,7 +147,7 @@ public class UserService implements IUserService {
         user.setName(updateUserDTO.getName());
         user.setBirthday(updateUserDTO.getBirthday());
         user.setPhoneNumber(updateUserDTO.getPhoneNumber());
-        user.setAvatar(updateUserDTO.getAvatar());
+        user.setAvatar(String.valueOf(updateUserDTO.getAvatar()));
 
         User updatedUser = userRepository.save(user);
 
