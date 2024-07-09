@@ -6,15 +6,18 @@ $(document).ready(function() {
         let email = $('#email').val();
         let phone = $('#phone').val();
         let password = $('#password').val();
+        let dateOfBirth = $('#dateOfBirth').val();
 
         $.ajax({
             type: 'POST',
-            url: '',
+            url: 'http://localhost:8080/',
             data: {
-                name: name,
                 email: email,
+                name: name,
                 phone: phone,
-                password: password
+                password: password,
+                dateOfBirth: dateOfBirth
+
             },
             success: function(response) {
                  if (response.success) {
