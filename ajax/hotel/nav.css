@@ -1,0 +1,46 @@
+/* TODO: Css for nav-bar */
+.navbar-nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-brand {
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    .navbar-light .navbar-brand:focus,
+    .navbar-light .navbar-brand:hover {
+        color: #000;
+    }
+
+    .navbar-brand .navbar-light .nav-link {
+        color: #100;
+    }
+
+    .w-100 {
+        height: 100vh;
+    }
+
+    .h-100 {
+        height: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav a {
+        font-size: 14px;
+        color: white;
+    }
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        /*    TODO: make the sidebar -> blur*/
+    }
+}
