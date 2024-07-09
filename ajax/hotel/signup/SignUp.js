@@ -7,12 +7,13 @@ $(document).ready(function () {
         let phone = document.getElementById('phone').value;
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
+        let birthday = document.getElementById('birthday').value;
         let user = {
             name: name,
             email: email,
             phoneNumber: phone,
             password: password,
-            birthday: null,
+            birthday: birthday,
             avatar: '124.jpg'
         }
 
