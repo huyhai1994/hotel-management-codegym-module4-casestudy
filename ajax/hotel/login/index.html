@@ -7,28 +7,38 @@
     <title>Login Form</title>
     <link rel="stylesheet" href="Css.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
+<!--Login form-->
 <div class="container">
-    <form id="loginForm" class="login-form"
-          method="post">
-        <h2>Login</h2>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email"
-                   name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password"
-                   name="password" required>
-        </div>
-        <button type="button" onclick="login()">
-            Login
-        </button>
-        <p id="message"></p>
-    </form>
+    <div class="row">
+        <form id="loginForm" class="login-form"
+              method="post">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email"
+                       name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password"
+                       name="password" required>
+            </div>
+            <button type="button" onclick="login()">
+                Login
+            </button>
+            <p id="message"></p>
+        </form>
+    </div>
+
 </div>
+<!--<script>
+    $(function () {
+        $("#nav-placeholder").load("nav.html");
+    });
+</script>-->
 <script src="Login.js"></script>
 </body>
 </html>
