@@ -2,8 +2,6 @@ package com.codegym.hotelmanagementsystemcodegymmodule4.config;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
 public class UserPrincipal implements UserDetails {
 
     @Serial
@@ -22,6 +18,13 @@ public class UserPrincipal implements UserDetails {
     private final String email;
     private final String password;
     private final Collection<? extends GrantedAuthority> roles;
+
+
+    public UserPrincipal(String email, String password, Collection<? extends GrantedAuthority> roles) {
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public static UserDetails build(User user) {
              /*TODO: Chuyen role (dang chuoi) thanh
@@ -32,14 +35,18 @@ public class UserPrincipal implements UserDetails {
             for (Role role : user.getRoles()) {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             }
-            return new UserPrincipal(user.getEmail(),
-                    user.getPassword(), authorities);
+            return new UserPrincipal(user.getEmail(), user.getPassword(), authorities);
         }
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return this.roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
     @Override

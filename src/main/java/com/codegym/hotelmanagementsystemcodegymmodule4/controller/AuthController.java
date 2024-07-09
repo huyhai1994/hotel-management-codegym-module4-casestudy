@@ -62,8 +62,9 @@ public class AuthController {
         String jwt = jwtService.generateTokenLogin(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userServices.findUserByEmail(user.getEmail());
+        JwtResponse jwtResponse = new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getAuthorities());
         /*TODO: Tra ve Jwt Response sau khi dang nhap thanh cong*/
-        return ResponseEntity.ok(new JwtResponse(currentUser.getId(), jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+        return ResponseEntity.ok(jwtResponse);
     }
 
     @PostMapping("/register")
