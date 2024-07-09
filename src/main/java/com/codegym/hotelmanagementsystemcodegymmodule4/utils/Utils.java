@@ -4,10 +4,13 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.RoomDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -34,7 +37,11 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
-        userDTO.setRoles(user.getRoles().toString());
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(role);
+        }
+        userDTO.setRole(roles);
         return userDTO;
     }
 

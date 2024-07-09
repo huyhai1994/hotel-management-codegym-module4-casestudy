@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -41,6 +42,8 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
+    private BigDecimal totalPrice;
+    private Boolean bookingStatus;
 
     public void calculateTotalNumberOfGuest() {
         this.totalNumOfGuest = this.numOfAdults + this.numOfChildren;

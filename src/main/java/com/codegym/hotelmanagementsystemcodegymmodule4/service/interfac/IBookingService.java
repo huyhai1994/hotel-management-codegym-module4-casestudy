@@ -1,7 +1,10 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac;
 
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ITotalPriceByMonth;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
+
+import java.time.LocalDate;
 
 public interface IBookingService {
 
@@ -12,5 +15,6 @@ public interface IBookingService {
     Response getAllBookings();
 
     Response cancelBooking(Long bookingId);
+    ITotalPriceByMonth findTotalPriceByMonth(LocalDate month);
 
 }

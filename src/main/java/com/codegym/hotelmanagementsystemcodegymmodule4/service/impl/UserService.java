@@ -1,16 +1,22 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService implements IUserService {
@@ -130,5 +136,40 @@ public class UserService implements IUserService {
             response.setMessage("Error getting all users " + e.getMessage());
         }
         return response;
+    }
+
+
+    @Override
+    public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            throw new UsernameNotFoundException("User not found with id: " + userId);
+        }
+
+        User user = userOptional.get();
+        user.setName(updateUserDTO.getName());
+        user.setBirthday(updateUserDTO.getBirthday());
+        user.setPhoneNumber(updateUserDTO.getPhoneNumber());
+        user.setAvatar(updateUserDTO.getAvatar());
+
+        User updatedUser = userRepository.save(user);
+
+        return convertToDTO(updatedUser);
+    }
+
+    private UserDTO convertToDTO(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setName(user.getName());
+        userDTO.setBirthday(user.getBirthday());
+        userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setAvatar(user.getAvatar());
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(role);
+        }
+        userDTO.setRole(roles);
+        return userDTO;
     }
 }
