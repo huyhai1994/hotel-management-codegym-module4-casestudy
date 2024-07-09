@@ -10,57 +10,15 @@
     <!-- Bootstrap icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
           rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <title>BootStrap 5 Project Landing
-        Page</title>
+    <title>Hotel Management Project</title>
 </head>
-card-img-top
 <body>
-<!-- TODO: Step1 -->
-<!-- nav-bar -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img
-                src="https://thumbs.dreamstime.com/b/luxury-hotel-crown-key-letter-h-monogram-logo-laurel-elegant-beautiful-round-vector-emblem-sign-royalty-restaurant-97215514.jpg"
-                id="logo" alt="">
-            </span></a>
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse"
-             id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- TODO: Step2 -->
-<!-- Carosels -->
+<!-- TODO: nav-bar -->
+<div id="nav-placeholder">
+</div>
+<!-- TODO: Carousel -->
 <div id="carouselExampleCaptions"
      class="carousel slide"
      data-bs-ride="carousel">
@@ -86,7 +44,7 @@ card-img-top
                  class="d-block w-100 h-100"
                  alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Your Dream House</h5>
+                <h5> Ẩm thực <br> từ đặc sản địa phương <br> đến phong vị quốc tế</h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
@@ -101,14 +59,14 @@ card-img-top
                  class="d-block w-100 h-100"
                  alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Always Dedicated</h5>
+                <h5>Hệ thống phòng nghỉ <br> lịch lãm, cổ điển và sang trọng </h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
                     Porro
                     nam hic cumque?</p>
                 <p class="btn btn-warning mt-3"
-                   id="" href="#">Learn More</p>
+                   href="#">Learn More</p>
             </div>
         </div>
         <div class="carousel-item">
@@ -117,7 +75,7 @@ card-img-top
                  alt="..."
                  style="object-fit: cover;">
             <div class="carousel-caption d-none d-md-block">
-                <h5>True Construction</h5>
+                <h5>Lựa chọn tinh tế giữa lòng Hà Nội</h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
@@ -145,22 +103,23 @@ card-img-top
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<!-- about section -->
+<!-- TODO: about section -->
 <section id="about"
          class="about-section-padding mt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
-                <div class="about-img">
-                    <img src="https://www.hoteljob.vn/files/Ni%20-%20%E1%BA%A2nh%20HTJ/2018/Th%C3%A1ng%206/BS%20t6/ban-mo-ta-cong-viec-giam-sat-le-tan-khach-san.jpg"
-                         alt="" class="img-fluid">
+                <div>
+                    <img id="about-img"
+                         src="https://swinburne-vn.edu.vn/wp-content/uploads/nganh-quan-tri-khach-san3.jpeg"
+                         alt="">
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
                 <div class="about-text">
-                    <h2> We provide Best Quality
+                    <h2> Chúng tôi cung cấp
                         <br>
-                        Service Ever
+                        dịch vụ tốt nhất
                     </h2>
                     <p>Lorem ipsum dolor sit, amet
                         consectetur adipisicing
@@ -188,7 +147,7 @@ card-img-top
     </div>
 </section>
 
-<!-- Service section -->
+<!-- TODO: Service section -->
 <section id="services"
          class="services section-padding">
     <div class="container">
@@ -320,7 +279,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
 
                     </div>
@@ -346,7 +305,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
 
                     </div>
@@ -374,7 +333,7 @@ card-img-top
                             placeat sequi.
                         </p>
                         <button class="btn btn-warning text-dark">
-                            Learn More
+                            Book Now
                         </button>
                     </div>
                 </div>
@@ -402,6 +361,14 @@ card-img-top
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#nav-placeholder").load("nav.html");
+    });
+</script>
+<!--end of Navigation bar-->
+
 </body>
 
 </html>
