@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cập Nhật Phòng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Cập Nhật Phòng</h1>
+    <form id="updateRoomForm" class="needs-validation" novalidate>
+        <input type="hidden" id="updateRoomId" name="roomId">
+        <div class="form-group">
+            <label for="updateRoomType">Loại Phòng:</label>
+            <input type="text" class="form-control" id="updateRoomType" name="roomType" required>
+            <div class="invalid-feedback">Vui lòng nhập loại phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="updateRoomPrice">Giá Phòng:</label>
+            <input type="text" class="form-control" id="updateRoomPrice" name="roomPrice" required>
+            <div class="invalid-feedback">Vui lòng nhập giá phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="updateRoomDescription">Mô Tả Phòng:</label>
+            <textarea class="form-control" id="updateRoomDescription" name="roomDescription" required></textarea>
+            <div class="invalid-feedback">Vui lòng nhập mô tả phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="updatePhoto">Ảnh Phòng:</label>
+            <input type="file" class="form-control-file" id="updatePhoto" name="photo">
+            <img src="" id="image" alt="" width="100" height="100">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật Phòng</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var roomId = urlParams.get('id');
+        if (roomId) {
+            $.get(`http://localhost:8080/api/rooms/room-by-id/${roomId}`, function (response) {
+                var room = response.room;
+                console.log(room.roomPhotoUrl)
+                $("#updateRoomId").val(room.id);
+                $("#updateRoomType").val(room.roomType);
+                $("#updateRoomPrice").val(room.roomPrice);
+                $("#updateRoomDescription").val(room.roomDescription);
+                $("#image").attr("src", room.roomPhotoUrl);
+            });
+        }
+
+        $("#updateRoomForm").on("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var roomId = $("#updateRoomId").val();
+            $.ajax({
+                type: "PUT",
+                url: `http://localhost:8080/api/rooms/update/${roomId}`,
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response.message);
+                    $("#updateRoomForm")[0].reset();
+                    $(".was-validated").removeClass("was-validated");
+                    window.location.href= "index.html"
+                },
+                error: function (response) {
+                    alert(response.responseJSON.message);
+                }
+            });
+        });
+    });
+
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
