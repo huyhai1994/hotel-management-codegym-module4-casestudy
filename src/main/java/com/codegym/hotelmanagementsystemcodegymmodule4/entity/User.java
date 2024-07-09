@@ -33,7 +33,7 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
     /*TODO: s-step 1*/
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Role> roles;
 
     private LocalDate birthday;
