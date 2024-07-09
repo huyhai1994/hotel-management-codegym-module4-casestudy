@@ -35,6 +35,11 @@
         font-size: 14px;
         color: white;
     }
+
+    .nav-item .active {
+        font-size: 100px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 991px) {
@@ -42,5 +47,15 @@
         background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
         /*    TODO: make the sidebar -> blur*/
+    }
+
+    .nav-item .active {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .nav-item .nav-link {
+        font-size: 20px;
+        text-align: center;
     }
 }
