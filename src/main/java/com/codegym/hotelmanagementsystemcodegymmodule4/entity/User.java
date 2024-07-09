@@ -36,6 +36,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Role> roles;
 
+    @NotBlank(message = "Birthday is required")
     private LocalDate birthday;
 
     private String avatar;

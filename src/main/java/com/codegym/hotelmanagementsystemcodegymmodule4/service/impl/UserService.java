@@ -146,7 +146,7 @@ public class UserService implements IUserService {
         user.setName(updateUserDTO.getName());
         user.setBirthday(updateUserDTO.getBirthday());
         user.setPhoneNumber(updateUserDTO.getPhoneNumber());
-        user.setAvatar(updateUserDTO.getAvatar());
+        user.setAvatar(String.valueOf(updateUserDTO.getAvatar()));
 
         User updatedUser = userRepository.save(user);
 
