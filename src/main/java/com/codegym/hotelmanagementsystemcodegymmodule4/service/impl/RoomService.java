@@ -33,9 +33,11 @@ public class RoomService implements IRoomService {
 
         try {
             Room room = new Room();
+            room.setRoomPhotoUrl("imag1");
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setRoomDescription(description);
+            room.setRoomStatus(false);
             Room savedRoom = roomRepository.save(room);
             RoomDTO roomDTO = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);

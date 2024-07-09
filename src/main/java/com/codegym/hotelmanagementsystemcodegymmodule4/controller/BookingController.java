@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bookings")
-
+@RequestMapping("/api/bookings")
+@CrossOrigin("*")
 public class BookingController {
 
     @Autowired
