@@ -10,3 +10,7 @@ body {
 .bg-light {
     margin-top: 200px;
 }
+
+.bg-gradient {
+    opacity: 0.85;
+}
