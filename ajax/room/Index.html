@@ -5,10 +5,12 @@
     <title>Danh Sách Phòng</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <style>
         body {
             margin: 20px;
         }
+
         table img {
             width: 100px;
         }
@@ -16,7 +18,9 @@
 </head>
 <body>
 
-<a href="create.html"><button  class="btn btn-primary" id="addNewRoom">Thêm Phòng</button></a>
+<a href="create.html">
+    <button class="btn btn-primary" id="addNewRoom">Thêm Phòng</button>
+</a>
 <div class="container">
     <h1 class="my-4">Danh Sách Phòng</h1>
     <table class="table table-bordered table-striped" id="roomTable">
@@ -37,7 +41,9 @@
 
 <script>
     $(document).ready(function () {
+
         loadRooms();
+
 
         $("#roomTable").on("click", ".deleteRoom", function () {
             var roomId = $(this).data("id");
@@ -58,6 +64,8 @@
     });
 
     function loadRooms() {
+
+
         $.get("http://localhost:8080/api/rooms/all", function (response) {
             console.log(response)
             var roomList = response.roomList;
@@ -78,7 +86,7 @@
                         </tr>
                     `;
 
-                let userRow =`
+                let userRow = `
                         <tr>
                             <td>${room.id}</td>
                             <td>${room.roomType}</td>
@@ -92,10 +100,11 @@
                     `;
 
                 let dataUser = JSON.parse(localStorage.getItem('token'));
-                if (dataUser.authorities[0].authoritity == "ROLE_USER"){
+                if (dataUser.authorities[0].authoritity == "ROLE_USER") {
                     roomTable.append(userRow)
                     $('#addNewRoom').hidden()
-                }else{
+                } else {
+
                     roomTable.append(row);
                 }
             });
