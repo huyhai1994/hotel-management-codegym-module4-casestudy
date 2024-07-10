@@ -17,10 +17,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Service
 public class RoomService implements IRoomService {
-
 
 
     @Autowired
@@ -34,13 +32,12 @@ public class RoomService implements IRoomService {
         Response response = new Response();
 
         try {
-//            String imageUrl = awsS3Service.saveImageToS3(photo);
-            String imageUrl = "";
-
             Room room = new Room();
+            room.setRoomPhotoUrl("imag1");
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setRoomDescription(description);
+            room.setRoomStatus(false);
             Room savedRoom = roomRepository.save(room);
             RoomDTO roomDTO = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);
@@ -102,11 +99,6 @@ public class RoomService implements IRoomService {
         Response response = new Response();
 
         try {
-
-            String imageUrl = null;
-            if (photo != null && !photo.isEmpty()) {
-//                imageUrl = awsS3Service.saveImageToS3(photo);
-            }
 
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
             if (roomType != null) room.setRoomType(roomType);
@@ -184,24 +176,6 @@ public class RoomService implements IRoomService {
         } catch (OurException e) {
             response.setStatusCode(404);
             response.setMessage(e.getMessage());
-        } catch (Exception e) {
-            response.setStatusCode(500);
-            response.setMessage("Error saving a room " + e.getMessage());
-        }
-        return response;
-    }
-
-    @Override
-    public Response findRoomByRoomStatus(Boolean roomStatus) {
-       Response response = new Response();
-
-        try {
-            List<Room> roomList = roomRepository.findRoomByRoomStatus(roomStatus);
-            List<RoomDTO> roomDTOList = Utils.mapRoomListEntityToRoomListDTO(roomList);
-            response.setStatusCode(200);
-            response.setMessage("successful");
-            response.setRoomList(roomDTOList);
-
         } catch (Exception e) {
             response.setStatusCode(500);
             response.setMessage("Error saving a room " + e.getMessage());

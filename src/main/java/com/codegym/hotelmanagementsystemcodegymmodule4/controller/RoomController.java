@@ -15,14 +15,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
+@CrossOrigin("*")
 public class RoomController {
 
-    private final IRoomService roomService;
-
-    public RoomController(IRoomService roomService) {
-        this.roomService = roomService;
-    }
+    @Autowired
+    private IRoomService roomService;
+    @Autowired
+    private IBookingService iBookingService;
 
 
     @PostMapping("/add")
@@ -101,10 +101,5 @@ public class RoomController {
 
     }
 
-    @GetMapping("/filter?f={roomStatus}")
-            public ResponseEntity<Response> findRoomByRoomStatus(@RequestParam(value = "f") Boolean roomStatus){
-        Response response = roomService.findRoomByRoomStatus(roomStatus);
-        return ResponseEntity.status(response.getStatusCode()).body(response);
-    }
-}
 
+}

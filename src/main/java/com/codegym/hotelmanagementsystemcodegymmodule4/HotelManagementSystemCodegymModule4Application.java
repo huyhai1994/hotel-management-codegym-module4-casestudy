@@ -17,7 +17,6 @@ public class HotelManagementSystemCodegymModule4Application {
     public static void main(String[] args) {
         SpringApplication.run(HotelManagementSystemCodegymModule4Application.class, args);
     }
-
     @Bean
     public Storage storage() throws IOException {
         InputStream inputStream = new ClassPathResource("firebase-config.json").getInputStream();

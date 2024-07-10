@@ -13,6 +13,20 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
+    private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final SecureRandom secureRandom = new SecureRandom();
+
+
+    public static String generateRandomConfirmationCode(int length) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int randomIndex = secureRandom.nextInt(ALPHANUMERIC_STRING.length());
+            char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+        return stringBuilder.toString();
+    }
+
 
     public static UserDTO mapUserEntityToUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
@@ -22,12 +36,8 @@ public class Utils {
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setBirthday(user.getBirthday());
-<<<<<<< HEAD
-        userDTO.setAvatar(user.getAvatar());
-=======
         userDTO.setAvatar((user.getAvatar()));
         userDTO.setRoles(user.getRoles().toString());
->>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
         return userDTO;
     }
 
@@ -44,6 +54,7 @@ public class Utils {
 
     public static BookingDTO mapBookingEntityToBookingDTO(Booking booking) {
         BookingDTO bookingDTO = new BookingDTO();
+        // Map simple fields
         bookingDTO.setId(booking.getId());
         bookingDTO.setCheckInDate(booking.getCheckInDate());
         bookingDTO.setCheckOutDate(booking.getCheckOutDate());
@@ -72,6 +83,7 @@ public class Utils {
     public static BookingDTO mapBookingEntityToBookingDTOPlusBookedRooms(Booking booking, boolean mapUser) {
 
         BookingDTO bookingDTO = new BookingDTO();
+        // Map simple fields
         bookingDTO.setId(booking.getId());
         bookingDTO.setCheckInDate(booking.getCheckInDate());
         bookingDTO.setCheckOutDate(booking.getCheckOutDate());
@@ -102,6 +114,8 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
+        //      userDTO.setRole(user.getRole());
+
         if (!user.getBookings().isEmpty()) {
             userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRooms(booking, false)).collect(Collectors.toList()));
         }
@@ -123,5 +137,4 @@ public class Utils {
 
 
 }
-
 

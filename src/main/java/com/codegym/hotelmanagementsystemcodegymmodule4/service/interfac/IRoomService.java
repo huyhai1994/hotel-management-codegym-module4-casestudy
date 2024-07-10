@@ -25,7 +25,4 @@ public interface IRoomService {
     Response getAvailableRoomsByDataAndType(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
 
     Response getAllAvailableRooms();
-
-    Response findRoomByRoomStatus(Boolean roomStatus);
-
 }

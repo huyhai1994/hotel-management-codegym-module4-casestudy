@@ -32,11 +32,9 @@ public class User {
 
     @NotBlank(message = "Password is required")
     private String password;
-
     /*TODO: s-step 1*/
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Role> roles;
-
 
     private LocalDate birthday;
 
@@ -44,8 +42,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
-
-
-
 }
-

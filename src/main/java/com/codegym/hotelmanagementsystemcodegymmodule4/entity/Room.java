@@ -17,6 +17,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String roomType;
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
@@ -34,6 +35,8 @@ public class Room {
                 ", roomPrice=" + roomPrice +
                 ", roomPhotoUrl='" + roomPhotoUrl + '\'' +
                 ", roomDescription='" + roomDescription + '\'' +
+                ", roomStatus='" + roomStatus + '\'' +
+
                 '}';
     }
 }

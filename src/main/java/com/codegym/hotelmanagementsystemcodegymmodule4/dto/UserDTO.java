@@ -22,16 +22,11 @@ public class UserDTO {
     private String email;
     private String name;
     private String phoneNumber;
-<<<<<<< HEAD
     private String avatar;
     private LocalDate birthday;
-=======
     private String roles;
     private String password;
-    private LocalDate birthday;
-    private String avatar;
     private String role;
->>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
     private List<BookingDTO> bookings = new ArrayList<>();
 
 }
