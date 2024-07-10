@@ -18,10 +18,11 @@ import java.util.List;
 @RequestMapping("/rooms")
 public class RoomController {
 
-    @Autowired
-    private IRoomService roomService;
-    @Autowired
-    private IBookingService iBookingService;
+    private final IRoomService roomService;
+
+    public RoomController(IRoomService roomService) {
+        this.roomService = roomService;
+    }
 
 
     @PostMapping("/add")
@@ -100,5 +101,10 @@ public class RoomController {
 
     }
 
-
+    @GetMapping("/filter?f={roomStatus}")
+            public ResponseEntity<Response> findRoomByRoomStatus(@RequestParam(value = "f") Boolean roomStatus){
+        Response response = roomService.findRoomByRoomStatus(roomStatus);
+        return ResponseEntity.status(response.getStatusCode()).body(response);
+    }
 }
+

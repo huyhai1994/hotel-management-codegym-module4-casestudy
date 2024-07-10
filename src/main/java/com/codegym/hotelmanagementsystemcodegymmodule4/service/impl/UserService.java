@@ -1,6 +1,5 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
-import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
@@ -20,6 +19,9 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UploadService uploadService;
 
     @Override
     public Response getAllUsers() {
@@ -111,13 +113,14 @@ public class UserService implements IUserService {
         return response;
     }
 
+
     @Override
     public Response getMyInfo(String email) {
 
         Response response = new Response();
 
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new OurException("User Not Found"));
+            User user = userRepository.findByEmail(email);
             UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
             response.setStatusCode(200);
             response.setMessage("successful");
@@ -135,19 +138,18 @@ public class UserService implements IUserService {
         return response;
     }
 
-
     @Override
-    public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO) {
+    public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO)  {
         Optional<User> userOptional = userRepository.findById(userId);
         if (!userOptional.isPresent()) {
-            throw new UserNotFoundException("User not found with id: " + userId);
+//            throw new UserNotFoundException("User not found with id: " + userId);
         }
 
         User user = userOptional.get();
         user.setName(updateUserDTO.getName());
         user.setBirthday(updateUserDTO.getBirthday());
         user.setPhoneNumber(updateUserDTO.getPhoneNumber());
-        user.setAvatar(String.valueOf(updateUserDTO.getAvatar()));
+        user.setAvatar(uploadService.uploadFileToServer(updateUserDTO.getAvatar()));
 
         User updatedUser = userRepository.save(user);
 
@@ -162,7 +164,6 @@ public class UserService implements IUserService {
         userDTO.setBirthday(user.getBirthday());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setAvatar(user.getAvatar());
-        userDTO.setRole(user.getRole());
         return userDTO;
     }
 }

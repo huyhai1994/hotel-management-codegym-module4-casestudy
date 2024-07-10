@@ -1,13 +1,20 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
@@ -15,10 +22,8 @@ public class UserDTO {
     private String email;
     private String name;
     private String phoneNumber;
-    private String password;
-    private LocalDate birthday;
     private String avatar;
-    private String role;
+    private LocalDate birthday;
     private List<BookingDTO> bookings = new ArrayList<>();
 
 }

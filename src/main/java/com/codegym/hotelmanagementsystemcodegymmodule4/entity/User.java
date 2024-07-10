@@ -31,15 +31,13 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
 
-    @NotBlank(message = "Birthday is required")
-    private LocalDate birthday;
-
     private String avatar;
+
+    private LocalDate birthday;
 
     private String role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
-
 }
 

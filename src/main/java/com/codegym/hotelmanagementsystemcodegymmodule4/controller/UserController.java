@@ -1,10 +1,8 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
-
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
-import com.codegym.hotelmanagementsystemcodegymmodule4.service.impl.UserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,18 +23,19 @@ public class UserController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
+    @CrossOrigin(origins = "http://localhost:63343")
     @GetMapping("/get-by-id/{userId}")
     public ResponseEntity<Response> getUserById(@PathVariable("userId") String userId) {
         Response response = userService.getUserById(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
+
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Response> deleteUSer(@PathVariable("userId") String userId) {
         Response response = userService.deleteUser(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
-
 
 
     @GetMapping("/get-user-bookings/{userId}")
@@ -46,6 +45,7 @@ public class UserController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:63343")
     @PutMapping("/update/{id}")
     public ResponseEntity<UserDTO> updateUserInfo(
             @PathVariable Long id,
