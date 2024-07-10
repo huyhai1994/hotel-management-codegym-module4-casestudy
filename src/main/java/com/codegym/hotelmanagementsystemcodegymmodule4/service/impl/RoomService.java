@@ -182,4 +182,20 @@ public class RoomService implements IRoomService {
         }
         return response;
     }
+
+    @Override
+    public List<Room> getRoomsByRoomStatus() {
+        return  roomRepository.findRoomsByRoomStatusIsFalse();
+    }
+
+    @Override
+    public Response findRoomsByRoomStyle(String roomStyle) {
+        Response response = new Response();
+      List<Room> roomList =  roomRepository.findRoomsByRoomStyle(roomStyle);
+                List<RoomDTO> roomDTOList = Utils.mapRoomListEntityToRoomListDTO(roomList);
+        response.setStatusCode(200);
+        response.setMessage("successful");
+        response.setRoomList(roomDTOList);
+        return response;
+    }
 }

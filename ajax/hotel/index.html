@@ -16,8 +16,48 @@
 </head>
 <body>
 <!-- TODO: nav-bar -->
-<div id="nav-placeholder">
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../hotel/index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#allRoom">Room</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../booking/list.html">Booking</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../hotel/signup/SignUp.html">Dang Ky</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../hotel/login/index.html">Dang Nhap</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dang xuat</a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
 <!-- TODO: Carousel -->
 <div id="carouselExampleCaptions"
      class="carousel slide"
@@ -51,7 +91,7 @@
                     Porro
                     nam hic cumque?</p>
                 <p class="btn btn-warning mt-3"
-                   id="" href="#">Learn More</p>
+                   id="#" href="#">Learn More</p>
             </div>
         </div>
         <div class="carousel-item">
@@ -258,7 +298,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="allRoom">
         <div class="col-12 col-md-12 col-lg-4">
             <div class="card text-light text-center bg-white pb-2">
                 <img src="https://images.unsplash.com/flagged/photo-1556438758-8d49568ce18e?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2luZ2xlJTIwcm9vbXxlbnwwfHwwfHx8MA%3D%3D"
@@ -278,10 +318,11 @@
                             tempora,
                             placeat sequi.
                         </p>
-                        <button class="btn btn-warning text-dark">
-                            Book Now
-                        </button>
-
+                        <a href="../room/Index.html?id=single">
+                            <button class="btn btn-warning text-dark" >
+                                Book Now
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -304,10 +345,11 @@
                             tempora,
                             placeat sequi.
                         </p>
-                        <button class="btn btn-warning text-dark">
+                        <a href="../room/Index.html?id=double">
+                            <button class="btn btn-warning text-dark" >
                             Book Now
                         </button>
-
+                        </a>
                     </div>
                 </div>
             </div>
@@ -332,9 +374,11 @@
                             tempora,
                             placeat sequi.
                         </p>
-                        <button class="btn btn-warning text-dark">
+                        <a href="../room/Index.html?id=vip">
+                            <button class="btn btn-warning text-dark" >
                             Book Now
                         </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -368,7 +412,11 @@
     });
 </script>
 <!--end of Navigation bar-->
-
+<script>
+    function getAllRoomVIP(a){
+        window.location.href=  `../room/index.html?id=${a}`
+    }
+</script>
 </body>
 
 </html>

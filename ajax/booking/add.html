@@ -62,13 +62,16 @@
             checkInDate: $("#checkInDate").val(),
             checkOutDate: $("#checkOutDate").val(),
             numOfAdults: $("#numOfAdults").val(),
-            numOfChildren: $("#numOfChildren").val()
+            numOfChildren: $("#numOfChildren").val(),
+            totalNumOfGuest: $("#totalNumOfGuest").val(),
+          /*  bookingConfirmationCode: $("#bookingConfirmationCode").val()*/
+            bookingConfirmationCode:3344
         };
         var roomId = $("#roomId").val();
         var userId = $("#userId").val();
         $.ajax({
             type: "POST",
-            url: `http://localhost:8080/api/bookings/book-room/${roomId}/${userId}`,
+            url: 'http://localhost:8080/api/bookings/book-room/3/1',
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (response) {
