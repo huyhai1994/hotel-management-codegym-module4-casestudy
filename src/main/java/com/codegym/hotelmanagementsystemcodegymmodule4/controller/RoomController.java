@@ -15,7 +15,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
+@CrossOrigin("*")
 public class RoomController {
 
     private final IRoomService roomService;

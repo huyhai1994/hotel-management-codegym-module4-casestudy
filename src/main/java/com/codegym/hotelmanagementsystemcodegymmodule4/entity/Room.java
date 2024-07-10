@@ -34,6 +34,8 @@ public class Room {
                 ", roomPrice=" + roomPrice +
                 ", roomPhotoUrl='" + roomPhotoUrl + '\'' +
                 ", roomDescription='" + roomDescription + '\'' +
+                ", roomStatus='" + roomStatus + '\'' +
+
                 '}';
     }
 }

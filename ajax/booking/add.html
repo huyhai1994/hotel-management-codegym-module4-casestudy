@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Đặt Phòng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Thêm Đặt Phòng</h1>
+    <form id="addBookingForm" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="checkInDate">Ngày Nhận Phòng:</label>
+            <input type="date" class="form-control" id="checkInDate" name="checkInDate" required>
+            <div class="invalid-feedback">Vui lòng nhập ngày nhận phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="checkOutDate">Ngày Trả Phòng:</label>
+            <input type="date" class="form-control" id="checkOutDate" name="checkOutDate" required>
+            <div class="invalid-feedback">Vui lòng nhập ngày trả phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="numOfAdults">Số Người Lớn:</label>
+            <input type="number" class="form-control" id="numOfAdults" name="numOfAdults" required>
+            <div class="invalid-feedback">Vui lòng nhập số người lớn.</div>
+        </div>
+        <div class="form-group">
+            <label for="numOfChildren">Số Trẻ Em:</label>
+            <input type="number" class="form-control" id="numOfChildren" name="numOfChildren" required>
+            <div class="invalid-feedback">Vui lòng nhập số trẻ em.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Đặt Phòng</button>
+    </form>
+</div>
+
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    $("#addBookingForm").on("submit", function (e) {
+        e.preventDefault();
+        var formData = {
+            checkInDate: $("#checkInDate").val(),
+            checkOutDate: $("#checkOutDate").val(),
+            numOfAdults: $("#numOfAdults").val(),
+            numOfChildren: $("#numOfChildren").val()
+        };
+        var roomId = $("#roomId").val();
+        var userId = $("#userId").val();
+        $.ajax({
+            type: "POST",
+            url: `http://localhost:8080/api/bookings/book-room/${roomId}/${userId}`,
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            success: function (response) {
+                alert(response.message);
+                $("#addBookingForm")[0].reset();
+                $(".was-validated").removeClass("was-validated");
+            },
+            error: function (response) {
+                alert(response.responseJSON.message);
+            }
+        });
+    });
+</script>
+</body>
+</html>
