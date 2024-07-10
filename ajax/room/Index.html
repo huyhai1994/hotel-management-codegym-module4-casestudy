@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Phòng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+        table img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="create.html"><button  class="btn btn-primary" id="addNewRoom">Thêm Phòng</button></a>
+<div class="container">
+    <h1 class="my-4">Danh Sách Phòng</h1>
+    <table class="table table-bordered table-striped" id="roomTable">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Loại</th>
+            <th>Giá</th>
+            <th>Mô Tả</th>
+            <th>Ảnh</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        loadRooms();
+
+        $("#roomTable").on("click", ".deleteRoom", function () {
+            var roomId = $(this).data("id");
+            if (confirm("Bạn có chắc chắn muốn xóa phòng này không?")) {
+                $.ajax({
+                    type: "DELETE",
+                    url: `http://localhost:8080/api/rooms/delete/${roomId}`,
+                    success: function (response) {
+                        alert(response.message);
+                        loadRooms();
+                    },
+                    error: function (response) {
+                        alert(response.responseJSON.message);
+                    }
+                });
+            }
+        });
+    });
+
+    function loadRooms() {
+        $.get("http://localhost:8080/api/rooms/all", function (response) {
+            console.log(response)
+            var roomList = response.roomList;
+            var roomTable = $("#roomTable tbody");
+            roomTable.empty();
+            roomList.forEach(function (room) {
+                var row = `
+                        <tr>
+                            <td>${room.id}</td>
+                            <td>${room.roomType}</td>
+                            <td>${room.roomPrice}</td>
+                            <td>${room.roomDescription}</td>
+                            <td><img src="${room.roomPhotoUrl}" alt="Room Photo"></td>
+                            <td>
+                                <a href="edit.html?id=${room.id}" class="btn btn-warning btn-sm">Chỉnh Sửa</a>
+                                <button class="btn btn-danger btn-sm deleteRoom" data-id="${room.id}">Xóa</button>
+                            </td>
+                        </tr>
+                    `;
+
+                let userRow =`
+                        <tr>
+                            <td>${room.id}</td>
+                            <td>${room.roomType}</td>
+                            <td>${room.roomPrice}</td>
+                            <td>${room.roomDescription}</td>
+                            <td><img src="${room.roomPhotoUrl}" alt="Room Photo"></td>
+                            <td>
+                                 <a href="../booking/add.html" class="btn btn-warning btn-sm">Đăt phòng</a>
+                            </td>
+                        </tr>
+                    `;
+
+                let dataUser = JSON.parse(localStorage.getItem('token'));
+                if (dataUser.authorities[0].authoritity == "ROLE_USER"){
+                    roomTable.append(userRow)
+                    $('#addNewRoom').hidden()
+                }else{
+                    roomTable.append(row);
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>
+
