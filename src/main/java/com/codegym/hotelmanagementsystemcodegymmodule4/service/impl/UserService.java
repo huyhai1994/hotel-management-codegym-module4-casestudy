@@ -20,9 +20,12 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
+<<<<<<< HEAD
     @Autowired
     private UploadService uploadService;
 
+=======
+>>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
     @Override
     public Response getAllUsers() {
 
@@ -39,6 +42,10 @@ public class UserService implements IUserService {
             response.setMessage("Error getting all users " + e.getMessage());
         }
         return response;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -141,9 +148,12 @@ public class UserService implements IUserService {
     @Override
     public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO)  {
         Optional<User> userOptional = userRepository.findById(userId);
+<<<<<<< HEAD
         if (!userOptional.isPresent()) {
 //            throw new UserNotFoundException("User not found with id: " + userId);
         }
+=======
+>>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
 
         User user = userOptional.get();
         user.setName(updateUserDTO.getName());
@@ -164,6 +174,10 @@ public class UserService implements IUserService {
         userDTO.setBirthday(user.getBirthday());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setAvatar(user.getAvatar());
+<<<<<<< HEAD
+=======
+        userDTO.setRole(user.getRoles().toString());
+>>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
         return userDTO;
     }
 }

@@ -22,7 +22,12 @@ public class Utils {
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setBirthday(user.getBirthday());
+<<<<<<< HEAD
         userDTO.setAvatar(user.getAvatar());
+=======
+        userDTO.setAvatar((user.getAvatar()));
+        userDTO.setRoles(user.getRoles().toString());
+>>>>>>> ca13218f4ca5ea7008259f6848ed2341b57dd364
         return userDTO;
     }
 

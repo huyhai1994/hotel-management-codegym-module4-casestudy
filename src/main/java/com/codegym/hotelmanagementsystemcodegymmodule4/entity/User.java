@@ -3,15 +3,17 @@ package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "users")
+@Getter
 public class User {
 
     @Id
@@ -31,13 +33,19 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
 
-    private String avatar;
+    /*TODO: s-step 1*/
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Role> roles;
+
 
     private LocalDate birthday;
 
-    private String role;
+    private String avatar;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
+
+
+
 }
 
