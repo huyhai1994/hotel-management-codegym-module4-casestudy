@@ -36,13 +36,15 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Role> roles;
 
-    @NotBlank(message = "Birthday is required")
+   // @NotBlank(message = "Birthday is required")
     private LocalDate birthday;
 
     private String avatar;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
+
+
 
 
 }
