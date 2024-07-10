@@ -1,10 +1,9 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
-
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
-
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 
 public interface IUserService {
 
@@ -19,4 +18,6 @@ public interface IUserService {
     Response getMyInfo(String email);
 
     UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO);
+
+    void save(User user);
 }

@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     Optional<Booking> findByBookingConfirmationCode(String confirmationCode);
-    @Query(nativeQuery = true,value = "select MONTH(check_out_date) as Month, sum(total_price) as totalPrice from bookings where check_out_date < :month_in group by booking_status")
-    ITotalPriceByMonth findTotalPriceByMonth(@Param("month_in") LocalDate month);
+    @Query(nativeQuery = true,value = "select MONTH(check_out_date) as Month, sum(total_price) as totalPrice from bookings where check_out_date beetwen :start_month and :end_month group by booking_status")
+    ITotalPriceByMonth findTotalPriceByMonth(@Param("month_in") LocalDate startMonth,@Param("end_month") LocalDate endMonth);
 }

@@ -10,74 +10,16 @@
     <!-- Bootstrap icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
           rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <title>Hotel Management Project</title>
 </head>
 <body>
 <!-- TODO: nav-bar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <!--        TODO: LOGO-->
-        <a class="navbar-brand fs-1" href="#">
-            hotel navbar</a>
-        <!--TODO: toggler button-->
-        <button class="navbar-toggler shadow-none border-0"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!--        TODO: side-bar -->
-        <div class="sidebar offcanvas offcanvas-start"
-             tabindex="-1" id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel">
-            <!--TODO: side bar header-->
-            <div class="offcanvas-header text-light border-bottom">
-                <h5 class="offcanvas-title"
-                    id="offcanvasNavbarLabel">
-                    hotel navbar</h5>
-                <!--TODO: x button to close the side bar-->
-                <button type="button"
-                        class="btn-close btn-close-white shadow-none"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <!--TODO: sidebar body-->
-            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active"
-                           aria-current="page"
-                           href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                </ul>
-                <div class="d-flex flex-column flex-lg-row justify-content-center
-align-items-center gap-3 fs-5 flex-grow-1 pe-3">
-                    <!--TODO: login/signup-->
-                    <a href="login/index.html"
-                       class="text-white">Login</a>
-                    <a href="#signup"
-                       class="text-white text-decoration-none px-3 py-1 rounded-4"
-                       style="background-color: #f94ca4">SignUp</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
+<iframe src="./nav.html" frameborder="0" width="100%"></iframe>
+
+<div id="nav-placeholder">
+</div>
 <!-- TODO: Carousel -->
 <div id="carouselExampleCaptions"
      class="carousel slide"
@@ -104,7 +46,7 @@ align-items-center gap-3 fs-5 flex-grow-1 pe-3">
                  class="d-block w-100 h-100"
                  alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Your Dream House</h5>
+                <h5> Ẩm thực <br> từ đặc sản địa phương <br> đến phong vị quốc tế</h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
@@ -119,7 +61,7 @@ align-items-center gap-3 fs-5 flex-grow-1 pe-3">
                  class="d-block w-100 h-100"
                  alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Always Dedicated</h5>
+                <h5>Hệ thống phòng nghỉ <br> lịch lãm, cổ điển và sang trọng </h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
@@ -135,7 +77,7 @@ align-items-center gap-3 fs-5 flex-grow-1 pe-3">
                  alt="..."
                  style="object-fit: cover;">
             <div class="carousel-caption d-none d-md-block">
-                <h5>True Construction</h5>
+                <h5>Lựa chọn tinh tế giữa lòng Hà Nội</h5>
                 <p>Lorem, ipsum dolor sit amet
                     consectetur adipisicing elit.
                     Culpa, incidunt consequuntur!
@@ -177,9 +119,9 @@ align-items-center gap-3 fs-5 flex-grow-1 pe-3">
             </div>
             <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
                 <div class="about-text">
-                    <h2> We provide Best Quality
+                    <h2> Chúng tôi cung cấp
                         <br>
-                        Service Ever
+                        dịch vụ tốt nhất
                     </h2>
                     <p>Lorem ipsum dolor sit, amet
                         consectetur adipisicing
@@ -421,6 +363,14 @@ align-items-center gap-3 fs-5 flex-grow-1 pe-3">
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#nav-placeholder").load("nav.html");
+    });
+</script>
+<!--end of Navigation bar-->
+
 </body>
 
 </html>

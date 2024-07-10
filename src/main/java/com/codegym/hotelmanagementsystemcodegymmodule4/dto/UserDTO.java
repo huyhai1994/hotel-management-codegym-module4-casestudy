@@ -17,11 +17,11 @@ public class UserDTO {
     private String email;
     private String name;
     private String phoneNumber;
-
     private String password;
     private LocalDate birthday;
     private String avatar;
     private Set<Role> role;
+
     private List<BookingDTO> bookings = new ArrayList<>();
 
 }

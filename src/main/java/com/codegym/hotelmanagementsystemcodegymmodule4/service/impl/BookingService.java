@@ -145,8 +145,9 @@ public class BookingService implements IBookingService {
     }
 
     @Override
-    public ITotalPriceByMonth findTotalPriceByMonth(LocalDate month) {
-     ITotalPriceByMonth totalPriceByMonths =  bookingRepository.findTotalPriceByMonth(month);
+    public ITotalPriceByMonth findTotalPriceByMonth(LocalDate startMonth, LocalDate endMonth) {
+
+     ITotalPriceByMonth totalPriceByMonths =  bookingRepository.findTotalPriceByMonth(startMonth, endMonth);
 
         return totalPriceByMonths;
     }

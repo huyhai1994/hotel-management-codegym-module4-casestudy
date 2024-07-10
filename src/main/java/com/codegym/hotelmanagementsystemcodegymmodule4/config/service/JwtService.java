@@ -15,7 +15,7 @@ import java.util.Date;
 public class JwtService {
 
     private static final String SECRET_KEY = "123456789987654321123456789987654321123456789";
-    private static final long EXPIRE_TIME = 86400000L;
+    private static final long EXPIRE_TIME_ONE_DAY = 86400000L;
 
     public String generateTokenLogin(Authentication authentication) {
         // Extract user principal from the authentication object
@@ -28,7 +28,7 @@ public class JwtService {
         /*TODO: builder-> set noi dung cho payload*/
         return Jwts.builder().setSubject((userPrincipal.getUsername())) // Set the subject (username)
                 .setIssuedAt(new Date(System.currentTimeMillis())) // Set the issue time
-                .setExpiration(new Date((new Date()).getTime() + EXPIRE_TIME))  // Set the expiration time
+                .setExpiration(new Date((new Date()).getTime() + EXPIRE_TIME_ONE_DAY))  // Set the expiration time
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256) // Sign the token with the secret key and HS256 algorithm
                 .compact(); // Return the compact token string
     }

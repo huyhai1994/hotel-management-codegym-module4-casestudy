@@ -37,11 +37,16 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
+
         Set<Role> roles = new HashSet<>();
         for (Role role : user.getRoles()) {
             roles.add(role);
         }
         userDTO.setRole(roles);
+
+        userDTO.setBirthday(user.getBirthday());
+        userDTO.setAvatar((user.getAvatar()));
+
         return userDTO;
     }
 
