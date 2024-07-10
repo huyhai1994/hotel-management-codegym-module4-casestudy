@@ -14,9 +14,9 @@ $(document).ready(function () {
             phoneNumber: phone,
             password: password,
             birthday: birthday,
-            avatar: '124.jpg'
+            // avatar: '12.jpg\'4
         }
-
+        console.log(user)
         $.ajax({
             headers: {
                 Accept: 'application/json',
@@ -31,11 +31,13 @@ $(document).ready(function () {
                 } else {
                     $('#message').text(response.message);
                 }
+
+                window.location.href= "../login/index.html"
             },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error: ' + status, error);
-                $('#message').text('Error occurred, please try again.');
-            }
+            // error: function (xhr, status, error) {
+            //     console.error('AJAX Error: ' + status, error);
+            //     $('#message').text('Error occurred, please try again.');
+            // }
         });
     });
 });

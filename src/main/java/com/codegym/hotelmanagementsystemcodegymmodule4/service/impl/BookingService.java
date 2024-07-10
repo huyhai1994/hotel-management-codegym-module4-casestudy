@@ -143,14 +143,14 @@ public class BookingService implements IBookingService {
         }
         return response;
     }
-
-    @Override
-    public ITotalPriceByMonth findTotalPriceByMonth(LocalDate startMonth, LocalDate endMonth) {
-
-     ITotalPriceByMonth totalPriceByMonths =  bookingRepository.findTotalPriceByMonth(startMonth, endMonth);
-
-        return totalPriceByMonths;
-    }
+//
+//    @Override
+//    public ITotalPriceByMonth findTotalPriceByMonth(LocalDate startMonth, LocalDate endMonth) {
+//
+//     ITotalPriceByMonth totalPriceByMonths =  bookingRepository.findTotalPriceByMonth(startMonth, endMonth);
+//
+//        return totalPriceByMonths;
+//    }
 
 
     private boolean roomIsAvailable(Booking bookingRequest, List<Booking> existingBookings) {

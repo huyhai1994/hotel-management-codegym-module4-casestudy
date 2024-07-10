@@ -55,11 +55,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable).addFilterAfter(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers("/api/auth/**").permitAll().requestMatchers("/api/role").permitAll().requestMatchers(HttpMethod.GET, "/api/customers**").authenticated().requestMatchers("/api/customers**").hasAnyAuthority("ROLE_ADMIN").requestMatchers(HttpMethod.PUT, "/api/customers**").hasAnyAuthority("ROLE_ADMIN").requestMatchers(HttpMethod.POST, "/api/customers**").hasAnyAuthority("ROLE_ADMIN").requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasAnyAuthority("ROLE_ADMIN")).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
-        /*TODO: session STATELESS -> not save state
-         *       "each time an user authorized the security
-         *       will double check again if the user want to
-         *       re-entry*/
+        return http.csrf(AbstractHttpConfigurer::disable).addFilterAfter(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .authorizeHttpRequests(auth ->
+                auth
+                        .requestMatchers("/api/auth/**","/api/rooms/**","/api/bookings/**").permitAll()
+                        .anyRequest().permitAll())
+//                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                        .requestMatchers("/api/auth/**").permitAll()
+//                        .requestMatchers("/api/role").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/api/customers**")
+//                        .authenticated().requestMatchers("/api/customers**").hasAnyAuthority("ROLE_ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/api/customers**").hasAnyAuthority("ROLE_ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/api/customers**").hasAnyAuthority("ROLE_ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasAnyAuthority("ROLE_ADMIN"))
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+
     }
 
 }

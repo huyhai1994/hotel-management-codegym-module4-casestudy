@@ -16,6 +16,6 @@ public interface IBookingService {
 
     Response cancelBooking(Long bookingId);
 
-    ITotalPriceByMonth findTotalPriceByMonth(LocalDate startMonth, LocalDate endMonth);
+//    ITotalPriceByMonth findTotalPriceByMonth(LocalDate startMonth, LocalDate endMonth);
 
 }
