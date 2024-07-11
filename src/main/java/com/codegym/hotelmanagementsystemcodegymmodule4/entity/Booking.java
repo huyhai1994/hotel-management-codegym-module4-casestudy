@@ -1,6 +1,4 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.entity;
-
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
