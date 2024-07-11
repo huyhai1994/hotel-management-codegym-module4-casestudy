@@ -1,6 +1,7 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -26,6 +27,8 @@ public interface IRoomService {
 
     Response getAllAvailableRooms();
 
-    Response findRoomByRoomStatus(Boolean roomStatus);
+    List<Room> getRoomsByRoomStatus();
 
+    Response findRoomsByRoomStyle(String roomStyle);
 }
+

@@ -53,23 +53,18 @@ public class SecurityConfig {
         return authenticationProvider;
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable).addFilterAfter(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(auth ->
-                auth
-                        .requestMatchers("/api/auth/**","/api/rooms/**","/api/bookings/**").permitAll()
-                        .anyRequest().permitAll())
-//                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                        .requestMatchers("/api/auth/**").permitAll()
-//                        .requestMatchers("/api/role").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/customers**")
-//                        .authenticated().requestMatchers("/api/customers**").hasAnyAuthority("ROLE_ADMIN")
-//                        .requestMatchers(HttpMethod.PUT, "/api/customers**").hasAnyAuthority("ROLE_ADMIN")
-//                        .requestMatchers(HttpMethod.POST, "/api/customers**").hasAnyAuthority("ROLE_ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasAnyAuthority("ROLE_ADMIN"))
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
-
-    }
-
+   @Bean
+   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+       return http.csrf(AbstractHttpConfigurer::disable)
+               .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+               .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                       .requestMatchers("/api/**").permitAll()
+                       .requestMatchers("/api/role").permitAll()
+                       .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                       .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
+                       .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                       .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+                       .anyRequest().authenticated())
+               .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+   }
 }

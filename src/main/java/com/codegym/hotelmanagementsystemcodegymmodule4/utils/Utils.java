@@ -46,7 +46,7 @@ public class Utils {
 
         userDTO.setBirthday(user.getBirthday());
         userDTO.setAvatar((user.getAvatar()));
-
+        userDTO.setRoles(user.getRoles().toString());
         return userDTO;
     }
 
@@ -123,7 +123,7 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
-/*        userDTO.setRole(user.getRole())*/;
+  //      userDTO.setRole(user.getRole());
 
         if (!user.getBookings().isEmpty()) {
             userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRooms(booking, false)).collect(Collectors.toList()));

@@ -2,10 +2,12 @@ package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IBookingService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,11 +21,10 @@ import java.util.List;
 @CrossOrigin("*")
 public class RoomController {
 
-    private final IRoomService roomService;
-
-    public RoomController(IRoomService roomService) {
-        this.roomService = roomService;
-    }
+    @Autowired
+    private IRoomService roomService;
+    @Autowired
+    private IBookingService iBookingService;
 
 
     @PostMapping("/add")
@@ -59,6 +60,12 @@ public class RoomController {
     public ResponseEntity<Response> getRoomById(@PathVariable Long roomId) {
         Response response = roomService.getRoomById(roomId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
+    }
+
+    @GetMapping("/room-status/{id}")
+    public ResponseEntity<List<Room>> getRoomByStatusAndId(@PathVariable Long id) {
+        List<Room> rooms = roomService.getRoomsByRoomStatus();
+        return new ResponseEntity<>( rooms, HttpStatus.OK);
     }
 
     @GetMapping("/all-available-rooms")
@@ -102,10 +109,11 @@ public class RoomController {
 
     }
 
-    @GetMapping("/filter?f={roomStatus}")
-            public ResponseEntity<Response> findRoomByRoomStatus(@RequestParam(value = "f") Boolean roomStatus){
-        Response response = roomService.findRoomByRoomStatus(roomStatus);
+    @GetMapping("/get-room-type/{type}")
+    public ResponseEntity<Response> getRoomsByType(@PathVariable String type) {
+        Response response = roomService.findRoomsByRoomStyle(type);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
-}
 
+
+}

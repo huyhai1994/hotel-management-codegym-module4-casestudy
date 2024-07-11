@@ -5,15 +5,48 @@
     <title>Danh Sách Đặt Phòng</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            margin: 20px;
-        }
-    </style>
 </head>
 <body>
-<div class="container">
-    <h1 class="my-4">Danh Sách Đặt Phòng</h1>
+<!--TODO: navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../hotel/index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../room/index.html?id=getAll">Room</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../booking/list.html">Booking</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dang Ky</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dang Nhap</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" type="button" href="#" onclick="logout()">Dang xuat</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--TODO: danh sach dat phong-->
+<div class="container" style="margin-top: 150px">
+    <h1 class="my-4 text-center">Danh Sách Đặt Phòng</h1>
     <table class="table table-bordered table-striped" id="bookingTable">
         <thead class="thead-dark">
         <tr>
@@ -79,5 +112,6 @@
         });
     }
 </script>
+<script src="/ajax/utilities/logout.js"></script>
 </body>
 </html>
