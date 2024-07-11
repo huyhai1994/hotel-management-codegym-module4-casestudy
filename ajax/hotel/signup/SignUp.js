@@ -4,7 +4,13 @@ $(document).ready(function () {
 
         let name = document.getElementById(
             'name').value;
-        let phone = document.getElementById('phone').value;
+
+        // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+        // if (!passwordRegex.test(password)) {
+        //     this.showMessage("The new password must be at least 6 characters long, including both letters and numbers.");
+        //     return;
+        // }
+            let phone = document.getElementById('phone').value;
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
         let birthday = document.getElementById('birthday').value;
