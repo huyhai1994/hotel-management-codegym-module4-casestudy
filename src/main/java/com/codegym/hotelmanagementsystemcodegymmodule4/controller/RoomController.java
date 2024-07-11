@@ -2,10 +2,12 @@ package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IBookingService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,6 +62,12 @@ public class RoomController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
+    @GetMapping("/room-status/{id}")
+    public ResponseEntity<List<Room>> getRoomByStatusAndId(@PathVariable Long id) {
+        List<Room> rooms = roomService.getRoomsByRoomStatus();
+        return new ResponseEntity<>( rooms, HttpStatus.OK);
+    }
+
     @GetMapping("/all-available-rooms")
     public ResponseEntity<Response> getAvailableRooms() {
         Response response = roomService.getAllAvailableRooms();
@@ -99,6 +107,12 @@ public class RoomController {
         Response response = roomService.deleteRoom(roomId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
 
+    }
+
+    @GetMapping("/get-room-type/{type}")
+    public ResponseEntity<Response> getRoomsByType(@PathVariable String type) {
+        Response response = roomService.findRoomsByRoomStyle(type);
+        return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
 

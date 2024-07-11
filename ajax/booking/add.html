@@ -5,15 +5,48 @@
     <title>Thêm Đặt Phòng</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            margin: 20px;
-        }
-    </style>
 </head>
 <body>
-<div class="container">
-    <h1 class="my-4">Thêm Đặt Phòng</h1>
+<!-- TODO: nav-bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../hotel/index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#allRoom">Room</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../booking/list.html">Booking</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="signup"  type = "button" href="../hotel/signup/SignUp.html" >Dang Ky</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="signin" href="../hotel/login/index.html">Dang Nhap</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" type ="button" onclick="logout()">Dang xuat</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--TODO: booking -->
+<div class="container" style="margin-top: 100px">
+    <h1 class="my-4 text-center">Thêm Đặt Phòng</h1>
     <form id="addBookingForm" class="needs-validation" novalidate>
         <div class="form-group">
             <label for="checkInDate">Ngày Nhận Phòng:</label>
@@ -62,13 +95,16 @@
             checkInDate: $("#checkInDate").val(),
             checkOutDate: $("#checkOutDate").val(),
             numOfAdults: $("#numOfAdults").val(),
-            numOfChildren: $("#numOfChildren").val()
+            numOfChildren: $("#numOfChildren").val(),
+            totalNumOfGuest: $("#totalNumOfGuest").val(),
+          /*  bookingConfirmationCode: $("#bookingConfirmationCode").val()*/
+            bookingConfirmationCode:3344
         };
         var roomId = $("#roomId").val();
         var userId = $("#userId").val();
         $.ajax({
             type: "POST",
-            url: `http://localhost:8080/api/bookings/book-room/${roomId}/${userId}`,
+            url: 'http://localhost:8080/api/bookings/book-room/3/1',
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (response) {

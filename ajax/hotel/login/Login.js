@@ -20,7 +20,7 @@ function login() {
             // console.log(data)
             localStorage.setItem('token', JSON.stringify(data));
             //     chuyen trang sang customer
-            window.location.href = 'hello.html';
+            window.location.href = '../index.html';
         },
     });
 }
