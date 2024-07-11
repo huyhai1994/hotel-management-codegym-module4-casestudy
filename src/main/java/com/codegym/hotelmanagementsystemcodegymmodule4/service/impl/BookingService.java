@@ -50,12 +50,12 @@ public class BookingService implements IBookingService {
 
             bookingRequest.setRoom(room);
             bookingRequest.setUser(user);
-         //   String bookingConfirmationCode = Utils.generateRandomConfirmationCode(10);
-         //   bookingRequest.setBookingConfirmationCode(bookingConfirmationCode);
+            //   String bookingConfirmationCode = Utils.generateRandomConfirmationCode(10);
+            //   bookingRequest.setBookingConfirmationCode(bookingConfirmationCode);
             bookingRepository.save(bookingRequest);
             response.setStatusCode(200);
             response.setMessage("successful");
-         //   response.setBookingConfirmationCode(bookingConfirmationCode);
+            //   response.setBookingConfirmationCode(bookingConfirmationCode);
 
         } catch (OurException e) {
             response.setStatusCode(404);

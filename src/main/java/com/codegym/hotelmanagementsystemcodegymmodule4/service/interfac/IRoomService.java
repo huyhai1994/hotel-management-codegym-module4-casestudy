@@ -30,6 +30,5 @@ public interface IRoomService {
     List<Room> getRoomsByRoomStatus();
 
     Response findRoomsByRoomStyle(String roomStyle);
-
-
 }
+

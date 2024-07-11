@@ -1,5 +1,6 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
+
 import com.google.cloud.storage.*;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class UploadService {
 
     // upload file lên firebase
     private String uploadFileFromServerToFirebase(String filePath) {
-       /* Path localPath = Paths.get(filePath); // lấy ra đối tượng Paths của ảnh vừa upload lên server
+        Path localPath = Paths.get(filePath); // lấy ra đối tượng Paths của ảnh vừa upload lên server
         String fileName = localPath.getFileName().toString(); // lấy ra tên file upload
 
         BlobId blobId = BlobId.of(bucketName, fileName); // tạo file trên storage bằng tên và bucketname chỉ đinh
@@ -65,7 +66,7 @@ public class UploadService {
             return blob.getMediaLink(); // trả về đường dẫn ảnh online
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
-        return "";
+        }
     }
 }
+

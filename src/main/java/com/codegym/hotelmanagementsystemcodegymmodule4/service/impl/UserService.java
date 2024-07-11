@@ -1,7 +1,8 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.PasswordDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UpdateUserDTO;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ProfileUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
@@ -9,7 +10,12 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +24,11 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private StandardServletMultipartResolver multipartResolver;
 
     @Override
     public Response getAllUsers() {
@@ -139,14 +150,14 @@ public class UserService implements IUserService {
 
 
     @Override
-    public UserDTO updateUserInfo(Long userId, UpdateUserDTO updateUserDTO) {
+    public UserDTO profileUserInfo(Long userId, ProfileUserDTO profileUserDTO) {
         Optional<User> userOptional = userRepository.findById(userId);
 
         User user = userOptional.get();
-        user.setName(updateUserDTO.getName());
-        user.setBirthday(updateUserDTO.getBirthday());
-        user.setPhoneNumber(updateUserDTO.getPhoneNumber());
-        user.setAvatar(String.valueOf(updateUserDTO.getAvatar()));
+        user.setName(profileUserDTO.getName());
+        user.setBirthday(profileUserDTO.getBirthday());
+        user.setPhoneNumber(profileUserDTO.getPhoneNumber());
+        user.setAvatar(String.valueOf(profileUserDTO.getAvatar()));
 
         User updatedUser = userRepository.save(user);
 
@@ -164,4 +175,20 @@ public class UserService implements IUserService {
         userDTO.setRole(user.getRoles().toString());
         return userDTO;
     }
+
+
+
+    @Override
+    public void updatePassword(String userEmail, PasswordDTO passwordDTO) {
+        String newPassword = passwordDTO.getNewPassword();
+        String confirmPassword = passwordDTO.getConfirmPassword();
+        if (!newPassword.equals(confirmPassword)) {
+            throw new IllegalArgumentException("The new password does not match.");
+        }
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(userEmail));
+        User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
 }

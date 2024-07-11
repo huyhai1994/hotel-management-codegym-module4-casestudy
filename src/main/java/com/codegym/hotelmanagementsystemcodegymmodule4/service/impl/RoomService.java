@@ -182,7 +182,6 @@ public class RoomService implements IRoomService {
         }
         return response;
     }
-
     @Override
     public List<Room> getRoomsByRoomStatus() {
         return  roomRepository.findRoomsByRoomStatusIsFalse();
@@ -199,3 +198,4 @@ public class RoomService implements IRoomService {
         return response;
     }
 }
+

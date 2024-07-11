@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UpdateUserDTO {
+public class ProfileUserDTO {
     private String name;
     private LocalDate birthday;
     private String phoneNumber;

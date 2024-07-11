@@ -8,4 +8,3 @@ public interface IAwsS3Service {
 
     String saveImageToS3(MultipartFile photo);
 }
-
