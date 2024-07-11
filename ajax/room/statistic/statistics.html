@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      # su dung security #
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="statistics.css">
+
+    <script src="script.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+        <!--        <form class="form row">-->
+        <div class="row">
+            <select name="month" id="month" class="form-select" onchange="handlerMontOrYear()">
+                <option value="#">Tháng</option>
+
+            </select>
+            <select name="year" id="year" class="form-select" onchange="handlerMontOrYear()">
+
+                <option value="#">Năm</option>
+            </select>
+
+            <button class="btn btn-primary form-select" style="margin-left: 20px"
+                    onclick="getTotalPriceByMonthAndYear()">Search
+            </button>
+        </div>
+        <!--        </form>-->
+
+    </div>
+
+    <h1 class="my-4 text-center" id="tablePrice">Bảng thống kê tiền </h1>
+    <table class="table table-primary table-bordered " id="roomTable">
+        <thead class="">
+        <tr>
+            <th>Tháng</th>
+            <th>Tổng tiền</th>
+        </tr>
+        </thead>
+        <tbody id="table-content">
+        <td class></td>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    const monthValue = document.getElementById("month");
+    const yearValue = document.getElementById('year');
+    const monthOrYearValue = document.getElementById('month-or-year')
+    const titelTable = document.getElementById('tablePrice');
+    const tableContent = document.getElementById('table-content')
+
+
+    let month = `<option value="#">Tháng</option>`;
+    let year = `<option value='#'>Năm</option>`;
+    let yearNow = new Date().getFullYear();
+    let monthNow = new Date().getMonth();
+    for (let i = 1; i <= 12; i++) {
+        month += `
+           <option value="${i}" id="month${i}">${i}</option>
+            `
+    }
+
+
+    for (let i = 2010; i <= yearNow; i++) {
+        year += `
+           <option value="${i}" id="year${i}">${i}</option>
+        `
+    }
+    monthValue.innerHTML = month;
+    yearValue.innerHTML = year;
+    console.log(monthNow)
+
+    titelTable.innerHTML = `Bảng thông kê tiền các tháng trong năm ${yearNow}`
+
+    function handlerMontOrYear() {
+        if (yearValue.value == '#') {
+            titelTable.innerHTML = `Bảng thông kê tiền tháng ${monthValue.value}`
+
+        } else if (monthValue.value == '#') {
+            titelTable.innerHTML = `Bảng thông kê tiền năm ${yearValue.value}`
+
+        } else {
+            titelTable.innerHTML = `Bảng thông kê tiền tháng ${monthValue.value} năm ${yearValue.value}`
+
+        }
+
+
+    }
+
+    // if (yearValue.value == yearNow) {
+    //     month = "";
+    //     for (let i = 1; i <= monthNow + 1; i++) {
+    //         month += `
+    //        <option value="${i}" id="month${i}">${i}</option>
+    //         `
+    //     }
+    //     monthValue.innerHTML = month;
+    //
+    // }
+    if (monthValue.value == '#' && yearValue.value == '#') {
+        getTotalPriceMonth();
+    }
+
+
+    function getTotalPriceMonth() {
+        $.ajax({
+            url: `http://localhost:8080/api/bookings/total-price-by-month/${monthNow + 1}`,
+            method: 'GET',
+            success: function (data) {
+                let content = "";
+                for (let i = 0; i < data.length; i++) {
+                    content += `
+            <tr>
+                 <td>${i + 1}</td>
+                 <td>${data[i] == null ? 'null' : data[i].totalPrice}</td>
+            </tr>
+            `
+                }
+                tableContent.innerHTML = content;
+            }
+        })
+    }
+
+
+    function getTotalPriceByMonthAndYear() {
+        $.ajax({
+            url: `http://localhost:8080/api/bookings/total-price-by-month-and-year/${monthValue.value}/${yearValue.value}`,
+            method: 'GET',
+            success: function (data) {
+                let content = "";
+                for (let i = 0; i < data.length; i++) {
+                    content += `
+            <tr>
+                 <td>${monthValue.value}</td>
+                 <td>${data[i] == null ? 'null' : data[i].totalPrice}</td>
+            </tr>
+            `
+                }
+                tableContent.innerHTML = content;
+            }
+        })
+    }
+
+</script>
+
+
+</body>
+</html>

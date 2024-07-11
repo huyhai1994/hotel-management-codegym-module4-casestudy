@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cập Nhật Đặt Phòng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Cập Nhật Đặt Phòng</h1>
+    <form id="updateBookingForm" class="needs-validation" novalidate>
+        <input type="hidden" id="bookingId" name="bookingId">
+        <div class="form-group">
+            <label for="checkInDate">Ngày Nhận Phòng:</label>
+            <input type="date" class="form-control" id="checkInDate" name="checkInDate" required>
+            <div class="invalid-feedback">Vui lòng nhập ngày nhận phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="checkOutDate">Ngày Trả Phòng:</label>
+            <input type="date" class="form-control" id="checkOutDate" name="checkOutDate" required>
+            <div class="invalid-feedback">Vui lòng nhập ngày trả phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="numOfAdults">Số Người Lớn:</label>
+            <input type="number" class="form-control" id="numOfAdults" name="numOfAdults" required>
+            <div class="invalid-feedback">Vui lòng nhập số người lớn.</div>
+        </div>
+        <div class="form-group">
+            <label for="numOfChildren">Số Trẻ Em:</label>
+            <input type="number" class="form-control" id="numOfChildren" name="numOfChildren" required>
+            <div class="invalid-feedback">Vui lòng nhập số trẻ em.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật Đặt Phòng</button>
+    </form>
+</div>
+
+<script>
+    var bookingId = new URLSearchParams(window.location.search).get('id');
+    $(document).ready(function () {
+        if (bookingId) {
+            loadBookingDetails(bookingId);
+        }
+
+        $("#updateBookingForm").on("submit", function (e) {
+            e.preventDefault();
+            var formData = {
+                checkInDate: $("#checkInDate").val(),
+                checkOutDate: $("#checkOutDate").val(),
+                numOfAdults: $("#numOfAdults").val(),
+                numOfChildren: $("#numOfChildren").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: `http://localhost:8080/api/bookings/update/${bookingId}`,
+                contentType: "application/json",
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    alert(response.message);
+                },
+                error: function (response) {
+                    alert(response.responseJSON.message);
+                }
+            });
+        });
+    });
+
+    function loadBookingDetails(id) {
+        $.get(`http://localhost:8080/api/bookings/get-by-confirmation-code/${id}`, function (response) {
+            var booking = response.booking;
+            $("#bookingId").val(booking.id);
+            $("#checkInDate").val(booking.checkInDate);
+            $("#checkOutDate").val(booking.checkOutDate);
+            $("#numOfAdults").val(booking.numOfAdults);
+            $("#numOfChildren").val(booking.numOfChildren);
+        });
+    }
+</script>
+</body>
+</html>

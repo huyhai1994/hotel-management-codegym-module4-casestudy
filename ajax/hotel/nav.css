@@ -6,7 +6,7 @@
 }
 
 .navbar-light .navbar-brand {
-    color: #000;
+    color: #0c0c0c;
     font-size: 25px;
     text-transform: uppercase;
     font-weight: 700;
@@ -33,7 +33,7 @@
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .navbar-nav a {
         font-size: 14px;
-        color: white;
+        color: #0c0c0c;
     }
 
     .nav-item .active {

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Phòng Mới</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Thêm Phòng Mới</h1>
+    <form id="addRoomForm" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label>Loại Phòng:</label>
+<!--            <input type="text" class="form-control" id="addRoomType" name="roomType" required>-->
+            <select name="roomType" id="roomType">
+                <option value="1">Phòng Đơn </option>
+                <option value="2">Phòng Đôi </option>
+                <option value="3">Phòng VIP </option>
+            </select>
+            <div class="invalid-feedback">Vui lòng nhập loại phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="addRoomPrice">Giá Phòng:</label>
+            <input type="text" class="form-control" id="addRoomPrice" name="roomPrice" required>
+            <div class="invalid-feedback">Vui lòng nhập giá phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="addRoomDescription">Mô Tả Phòng:</label>
+            <textarea class="form-control" id="addRoomDescription" name="roomDescription" required></textarea>
+            <div class="invalid-feedback">Vui lòng nhập mô tả phòng.</div>
+        </div>
+        <div class="form-group">
+            <label for="addPhoto">Ảnh Phòng:</label>
+            <input type="file" class="form-control-file" id="addPhoto" name="photo">
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Phòng</button>
+    </form>
+</div>
+
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    $("#addRoomForm").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/rooms/add",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response.message);
+                $("#addRoomForm")[0].reset();
+                $(".was-validated").removeClass("was-validated");
+            },
+            error: function (response) {
+                alert(response.responseJSON.message);
+            }
+        });
+    });
+</script>
+</body>
+</html>

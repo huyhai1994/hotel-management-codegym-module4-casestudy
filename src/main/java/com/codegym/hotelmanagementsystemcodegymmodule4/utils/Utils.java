@@ -4,10 +4,13 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.RoomDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -34,6 +37,13 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
+
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(role);
+        }
+        userDTO.setRole(roles);
+
         userDTO.setBirthday(user.getBirthday());
         userDTO.setAvatar((user.getAvatar()));
         userDTO.setRoles(user.getRoles().toString());
@@ -113,7 +123,7 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
-/*        userDTO.setRole(user.getRole())*/;
+  //      userDTO.setRole(user.getRole());
 
         if (!user.getBookings().isEmpty()) {
             userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRooms(booking, false)).collect(Collectors.toList()));

@@ -33,9 +33,11 @@ public class RoomService implements IRoomService {
 
         try {
             Room room = new Room();
+            room.setRoomPhotoUrl("imag1");
             room.setRoomType(roomType);
             room.setRoomPrice(roomPrice);
             room.setRoomDescription(description);
+            room.setRoomStatus(false);
             Room savedRoom = roomRepository.save(room);
             RoomDTO roomDTO = Utils.mapRoomEntityToRoomDTO(savedRoom);
             response.setStatusCode(200);
@@ -178,6 +180,21 @@ public class RoomService implements IRoomService {
             response.setStatusCode(500);
             response.setMessage("Error saving a room " + e.getMessage());
         }
+        return response;
+    }
+    @Override
+    public List<Room> getRoomsByRoomStatus() {
+        return  roomRepository.findRoomsByRoomStatusIsFalse();
+    }
+
+    @Override
+    public Response findRoomsByRoomStyle(String roomStyle) {
+        Response response = new Response();
+      List<Room> roomList =  roomRepository.findRoomsByRoomStyle(roomStyle);
+                List<RoomDTO> roomDTOList = Utils.mapRoomListEntityToRoomListDTO(roomList);
+        response.setStatusCode(200);
+        response.setMessage("successful");
+        response.setRoomList(roomDTOList);
         return response;
     }
 }

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Đặt Phòng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<!--TODO: navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../hotel/index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../room/index.html?id=getAll">Room</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../booking/list.html">Booking</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dang Ky</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dang Nhap</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" type="button" href="#" onclick="logout()">Dang xuat</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--TODO: danh sach dat phong-->
+<div class="container" style="margin-top: 150px">
+    <h1 class="my-4 text-center">Danh Sách Đặt Phòng</h1>
+    <table class="table table-bordered table-striped" id="bookingTable">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Ngày Nhận Phòng</th>
+            <th>Ngày Trả Phòng</th>
+            <th>Số Người Lớn</th>
+            <th>Số Trẻ Em</th>
+            <th>Tổng Số Khách</th>
+            <th>Mã Xác Nhận</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        loadBookings();
+
+        $("#bookingTable").on("click", ".cancelBooking", function () {
+            var bookingId = $(this).data("id");
+            if (confirm("Bạn có chắc chắn muốn hủy đặt phòng này không?")) {
+                $.ajax({
+                    type: "DELETE",
+                    url: `http://localhost:8080/api/bookings/cancel/${bookingId}`,
+                    success: function (response) {
+                        alert(response.message);
+                        loadBookings();
+                    },
+                    error: function (response) {
+                        alert(response.responseJSON.message);
+                    }
+                });
+            }
+        });
+    });
+
+    function loadBookings() {
+        $.get("http://localhost:8080/api/bookings/all", function (response) {
+            var bookingList = response.bookingList;
+            var bookingTable = $("#bookingTable tbody");
+            bookingTable.empty();
+            bookingList.forEach(function (booking) {
+                var row = `
+                        <tr>
+                            <td>${booking.id}</td>
+                            <td>${booking.checkInDate}</td>
+                            <td>${booking.checkOutDate}</td>
+                            <td>${booking.numOfAdults}</td>
+                            <td>${booking.numOfChildren}</td>
+                            <td>${booking.totalNumOfGuest}</td>
+                            <td>${booking.bookingConfirmationCode}</td>
+                            <td>
+                                <button  class="btn btn-danger btn-sm cancelBooking" data-id="${booking.id}">Hủy</button>
+                            </td>
+                        </tr>
+                    `;
+                bookingTable.append(row);
+            });
+        });
+    }
+</script>
+<script src="/ajax/utilities/logout.js"></script>
+</body>
+</html>
