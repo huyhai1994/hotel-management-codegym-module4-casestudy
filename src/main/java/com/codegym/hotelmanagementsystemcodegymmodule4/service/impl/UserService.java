@@ -1,30 +1,23 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.PasswordDTO;
-import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ProfileUserDTO;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
-
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
-
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IUserService;
 import com.codegym.hotelmanagementsystemcodegymmodule4.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-
 import java.util.Set;
 
 
@@ -32,6 +25,9 @@ import java.util.Set;
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Response getAllUsers() {
@@ -186,7 +182,6 @@ public class UserService implements IUserService {
     }
 
 
-
     @Override
     public void updatePassword(String userEmail, PasswordDTO passwordDTO) {
         String newPassword = passwordDTO.getNewPassword();
@@ -199,3 +194,4 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
+}

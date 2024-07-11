@@ -26,11 +26,7 @@ public class UserDTO {
     private String phoneNumber;
     private String avatar;
     private LocalDate birthday;
-    private String roles;
     private String password;
-    private String role;
-    private LocalDate birthday;
-    private String avatar;
     private Set<Role> role;
 
     private List<BookingDTO> bookings = new ArrayList<>();
