@@ -157,6 +157,13 @@ public class BookingService implements IBookingService {
         return totalPriceByMonths;
     }
 
+    @Override
+    public List<ITotalPriceByMonth> getTotalPriceBYMonthAndYear(Integer month, Integer year) {
+
+
+        return bookingRepository.getTotalPriceBYMonthAndYear(month, year);
+    }
+
 
     private boolean roomIsAvailable(Booking bookingRequest, List<Booking> existingBookings) {
 

@@ -56,6 +56,10 @@ public class BookingController {
     public ResponseEntity<List<ITotalPriceByMonth>> totalPriceByMonth(@PathVariable Integer month){
         return new ResponseEntity<>(bookingService.findTotalPriceByMonth(month), HttpStatus.OK);
     }
+    @GetMapping("/total-price-by-month-and-year/{month}/{year}")
+    public ResponseEntity<List<ITotalPriceByMonth>> totalPriceByMonthAndYear(@PathVariable Integer month,@PathVariable Integer year){
+        return  new ResponseEntity<>(bookingService.getTotalPriceBYMonthAndYear(month,year), HttpStatus.OK);
+    }
 
 
 }
