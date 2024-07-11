@@ -1,13 +1,18 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.controller;
 
 
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ITotalPriceByMonth;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.TotalPriceByMonth;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
 import com.codegym.hotelmanagementsystemcodegymmodule4.service.interfac.IBookingService;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -45,6 +50,15 @@ public class BookingController {
     public ResponseEntity<Response> cancelBooking(@PathVariable Long bookingId) {
         Response response = bookingService.cancelBooking(bookingId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
+    }
+
+    @GetMapping("/total-price-by-month/{month}")
+    public ResponseEntity<List<ITotalPriceByMonth>> totalPriceByMonth(@PathVariable Integer month){
+        return new ResponseEntity<>(bookingService.findTotalPriceByMonth(month), HttpStatus.OK);
+    }
+    @GetMapping("/total-price-by-month-and-year/{month}/{year}")
+    public ResponseEntity<List<ITotalPriceByMonth>> totalPriceByMonthAndYear(@PathVariable Integer month,@PathVariable Integer year){
+        return  new ResponseEntity<>(bookingService.getTotalPriceBYMonthAndYear(month,year), HttpStatus.OK);
     }
 
 

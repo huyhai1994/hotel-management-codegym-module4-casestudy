@@ -11,16 +11,15 @@ class UserForm {
     }
 
     getUserData() {
-        const userId = $('#id').val() || 1; // Mặc định lấy ID 1 nếu input rỗng
+        const userId = $('#id').val() || 6; // Mặc định lấy ID 6 nếu input rỗng
         console.log(userId)
         $.ajax({
             url: `http://localhost:8080/users/get-by-id/${userId}`,
             method: 'GET',
-            success: (response) =>{
-                console.log(1)
+            success: (response) => {
                 console.log(response)
-                this.fillForm(response)}
-                ,
+                this.fillForm(response)
+            },
             error: (error) => this.handleError(error)
         });
     }
@@ -34,7 +33,7 @@ class UserForm {
         $('#birthday').val(response.user.birthday);
         $('#phone').val(response.user.phoneNumber);
         $('#avatar').val(response.user.avatar);
-        this.avatar.attr('src', response.user.avatar);
+        $('#avatarPreview').attr('src', response.user.avatar);
     }
 
     handleError(error) {
@@ -46,5 +45,6 @@ class UserForm {
 $(document).ready(function() {
     new UserForm('.form-login', '#message', '#avatarPreview');
 });
+
 
 

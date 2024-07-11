@@ -1,7 +1,9 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ITotalPriceByMonth;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
+import com.codegym.hotelmanagementsystemcodegymmodule4.dto.TotalPriceByMonth;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
@@ -16,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -139,6 +144,24 @@ public class BookingService implements IBookingService {
 
         }
         return response;
+    }
+
+    @Override
+    public List<ITotalPriceByMonth> findTotalPriceByMonth(Integer month) {
+        List<ITotalPriceByMonth> totalPriceByMonths = new ArrayList<>();
+        for (int i = 1; i <= month; i++) {
+            totalPriceByMonths.add( bookingRepository.findTotalPriceByMonth(i));
+        }
+
+
+        return totalPriceByMonths;
+    }
+
+    @Override
+    public List<ITotalPriceByMonth> getTotalPriceBYMonthAndYear(Integer month, Integer year) {
+
+
+        return bookingRepository.getTotalPriceBYMonthAndYear(month, year);
     }
 
 

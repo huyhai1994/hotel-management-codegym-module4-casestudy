@@ -1,6 +1,5 @@
 package com.codegym.hotelmanagementsystemcodegymmodule4.service.impl;
 
-
 import com.google.cloud.storage.*;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +68,3 @@ public class UploadService {
         }
     }
 }
-

@@ -4,28 +4,30 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.dto.BookingDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.RoomDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Booking;
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Room;
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 
-import java.security.SecureRandom;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Utils {
 
-    private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final SecureRandom secureRandom = new SecureRandom();
+    //   private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    //   private static final SecureRandom secureRandom = new SecureRandom();
 
 
-    public static String generateRandomConfirmationCode(int length) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int randomIndex = secureRandom.nextInt(ALPHANUMERIC_STRING.length());
-            char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
-            stringBuilder.append(randomChar);
-        }
-        return stringBuilder.toString();
-    }
+    //   public static String generateRandomConfirmationCode(int length) {
+    //     StringBuilder stringBuilder = new StringBuilder();
+    //     for (int i = 0; i < length; i++) {
+    //         int randomIndex = secureRandom.nextInt(ALPHANUMERIC_STRING.length());
+    //         char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
+    //         stringBuilder.append(randomChar);
+    //     }
+    //     return stringBuilder.toString();
+    // }
 
 
     public static UserDTO mapUserEntityToUserDTO(User user) {
@@ -35,6 +37,13 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
+
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(role);
+        }
+        userDTO.setRole(roles);
+
         userDTO.setBirthday(user.getBirthday());
         userDTO.setAvatar((user.getAvatar()));
         userDTO.setRoles(user.getRoles().toString());
@@ -114,7 +123,7 @@ public class Utils {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
-        //      userDTO.setRole(user.getRole());
+  //      userDTO.setRole(user.getRole());
 
         if (!user.getBookings().isEmpty()) {
             userDTO.setBookings(user.getBookings().stream().map(booking -> mapBookingEntityToBookingDTOPlusBookedRooms(booking, false)).collect(Collectors.toList()));
@@ -137,4 +146,5 @@ public class Utils {
 
 
 }
+
 

@@ -4,6 +4,9 @@ import com.codegym.hotelmanagementsystemcodegymmodule4.dto.PasswordDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.Response;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.ProfileUserDTO;
 import com.codegym.hotelmanagementsystemcodegymmodule4.dto.UserDTO;
+
+import com.codegym.hotelmanagementsystemcodegymmodule4.entity.Role;
+
 import com.codegym.hotelmanagementsystemcodegymmodule4.entity.User;
 import com.codegym.hotelmanagementsystemcodegymmodule4.exception.OurException;
 import com.codegym.hotelmanagementsystemcodegymmodule4.repository.UserRepository;
@@ -14,21 +17,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+
+import java.util.Set;
+
 
 @Service
 public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private StandardServletMultipartResolver multipartResolver;
 
     @Override
     public Response getAllUsers() {
@@ -172,7 +175,13 @@ public class UserService implements IUserService {
         userDTO.setBirthday(user.getBirthday());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setAvatar(user.getAvatar());
-        userDTO.setRole(user.getRoles().toString());
+
+        Set<Role> roles = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            roles.add(role);
+        }
+        userDTO.setRole(roles);
+
         return userDTO;
     }
 
@@ -190,5 +199,3 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
-
-}

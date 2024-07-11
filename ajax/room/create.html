@@ -16,8 +16,13 @@
     <h1 class="my-4">Thêm Phòng Mới</h1>
     <form id="addRoomForm" class="needs-validation" novalidate>
         <div class="form-group">
-            <label for="addRoomType">Loại Phòng:</label>
-            <input type="text" class="form-control" id="addRoomType" name="roomType" required>
+            <label>Loại Phòng:</label>
+<!--            <input type="text" class="form-control" id="addRoomType" name="roomType" required>-->
+            <select name="roomType" id="roomType">
+                <option value="1">Phòng Đơn </option>
+                <option value="2">Phòng Đôi </option>
+                <option value="3">Phòng VIP </option>
+            </select>
             <div class="invalid-feedback">Vui lòng nhập loại phòng.</div>
         </div>
         <div class="form-group">

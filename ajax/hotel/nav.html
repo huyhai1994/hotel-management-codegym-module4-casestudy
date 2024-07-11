@@ -1,77 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/hotel-management-system-codegym-module4/ajax/hotel/nav.css">
-</head>
-<body>
-<!-- TODO: nav-bar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="/hotel-management-system-codegym-module4/ajax/hotel/nav.css"
+    />
+  </head>
+  <body>
+    <!-- TODO: nav-bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
         <!--        TODO: LOGO-->
-        <a class="navbar-brand fs-1" href="#">
-            hotel navbar</a>
+        <a class="navbar-brand fs-1" href="#"> hotel navbar</a>
         <!--TODO: toggler button-->
-        <button class="navbar-toggler shadow-none border-0"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
         <!--        TODO: side-bar -->
-        <div class="sidebar offcanvas offcanvas-start"
-             tabindex="-1" id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel">
-            <!--TODO: side bar header-->
-            <div class="offcanvas-header text-light border-bottom">
-                <h5 class="offcanvas-title"
-                    id="offcanvasNavbarLabel">
-                    hotel navbar</h5>
-                <!--TODO: x button to close the side bar-->
-                <button type="button"
-                        class="btn-close btn-close-dark shadow-none"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!--TODO: side bar header-->
+          <div class="offcanvas-header text-light border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              hotel navbar
+            </h5>
+            <!--TODO: x button to close the side bar-->
+            <button
+              type="button"
+              class="btn-close btn-close-dark shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!--TODO: sidebar body-->
+          <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/hotel-management-system-codegym-module4/ajax/hotel/index.html"
+                  >Trang Chủ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+            <div
+              class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 fs-5 flex-grow-1 pe-3"
+            >
+              <!--TODO: login/signup-->
+              <a
+                href="/hotel-management-system-codegym-module4/ajax/hotel/login/index.html"
+                class="text-white"
+                >Đăng Nhập</a
+              >
+              <a
+                href="/hotel-management-system-codegym-module4/ajax/hotel/signup/SignUp.html"
+                class="text-white text-decoration-none px-3 py-1 rounded-4"
+                style="background-color: #f94ca4"
+                >Đăng kí</a
+              >
             </div>
-            <!--TODO: sidebar body-->
-            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active"
-                           aria-current="page"
-                           href="/hotel-management-system-codegym-module4/ajax/hotel/index.html">Trang Chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">Link</a>
-                    </li>
-                </ul>
-                <div class="d-flex flex-column flex-lg-row justify-content-center
-align-items-center gap-3 fs-5 flex-grow-1 pe-3">
-
-                    <!--TODO: login/signup-->
-                    <a href="/hotel-management-system-codegym-module4/ajax/hotel/login/index.html"
-                       class="text-white">Đăng Nhập</a>
-                    <a href="/hotel-management-system-codegym-module4/ajax/hotel/signup/SignUp.html"
-                       class="text-white text-decoration-none px-3 py-1 rounded-4"
-                       style="background-color: #f94ca4">Đăng kí</a>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-</nav>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+      </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
