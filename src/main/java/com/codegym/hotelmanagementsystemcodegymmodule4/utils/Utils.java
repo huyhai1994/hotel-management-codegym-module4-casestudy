@@ -46,7 +46,7 @@ public class Utils {
 
         userDTO.setBirthday(user.getBirthday());
         userDTO.setAvatar((user.getAvatar()));
-        userDTO.setRoles(user.getRoles().toString());
+        userDTO.setRole(user.getRoles());
         return userDTO;
     }
 
@@ -71,6 +71,7 @@ public class Utils {
         bookingDTO.setNumOfChildren(booking.getNumOfChildren());
         bookingDTO.setTotalNumOfGuest(booking.getTotalNumOfGuest());
         bookingDTO.setBookingConfirmationCode(booking.getBookingConfirmationCode());
+        bookingDTO.setTotalPrice(booking.getTotalPrice());
         return bookingDTO;
     }
 
@@ -100,6 +101,7 @@ public class Utils {
         bookingDTO.setNumOfChildren(booking.getNumOfChildren());
         bookingDTO.setTotalNumOfGuest(booking.getTotalNumOfGuest());
         bookingDTO.setBookingConfirmationCode(booking.getBookingConfirmationCode());
+        bookingDTO.setTotalPrice(booking.getTotalPrice());
         if (mapUser) {
             bookingDTO.setUser(Utils.mapUserEntityToUserDTO(booking.getUser()));
         }

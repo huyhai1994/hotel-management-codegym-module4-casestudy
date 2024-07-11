@@ -39,6 +39,9 @@ public class BookingService implements IBookingService {
     public Response saveBooking(Long roomId, Long userId, Booking bookingRequest) {
 
         Response response = new Response();
+        int date = bookingRequest.getCheckOutDate().getDayOfMonth() - bookingRequest.getCheckInDate().getDayOfMonth();
+
+
 
         try {
             if (bookingRequest.getCheckOutDate().isBefore(bookingRequest.getCheckInDate())) {
@@ -46,13 +49,12 @@ public class BookingService implements IBookingService {
             }
             Room room = roomRepository.findById(roomId).orElseThrow(() -> new OurException("Room Not Found"));
             User user = userRepository.findById(userId).orElseThrow(() -> new OurException("User Not Found"));
-
             List<Booking> existingBookings = room.getBookings();
 
             if (!roomIsAvailable(bookingRequest, existingBookings)) {
                 throw new OurException("Room not Available for selected date range");
             }
-
+            bookingRequest.setTotalPrice(BigDecimal.valueOf(date).multiply(room.getRoomPrice()));
             bookingRequest.setRoom(room);
             bookingRequest.setUser(user);
             //   String bookingConfirmationCode = Utils.generateRandomConfirmationCode(10);

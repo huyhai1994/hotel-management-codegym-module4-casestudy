@@ -57,6 +57,7 @@
             <th>Số Trẻ Em</th>
             <th>Tổng Số Khách</th>
             <th>Mã Xác Nhận</th>
+            <th>Tong Gia Tien</th>
             <th>Hành Động</th>
         </tr>
         </thead>
@@ -92,6 +93,7 @@
             var bookingList = response.bookingList;
             var bookingTable = $("#bookingTable tbody");
             bookingTable.empty();
+            console.log(response)
             bookingList.forEach(function (booking) {
                 var row = `
                         <tr>
@@ -102,6 +104,7 @@
                             <td>${booking.numOfChildren}</td>
                             <td>${booking.totalNumOfGuest}</td>
                             <td>${booking.bookingConfirmationCode}</td>
+                            <td>${booking.totalPrice}</td>
                             <td>
                                 <button  class="btn btn-danger btn-sm cancelBooking" data-id="${booking.id}">Hủy</button>
                             </td>
