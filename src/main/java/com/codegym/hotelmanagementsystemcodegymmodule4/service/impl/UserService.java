@@ -33,6 +33,9 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Response getAllUsers() {
 
@@ -186,7 +189,6 @@ public class UserService implements IUserService {
     }
 
 
-
     @Override
     public void updatePassword(String userEmail, PasswordDTO passwordDTO) {
         String newPassword = passwordDTO.getNewPassword();
@@ -199,3 +201,4 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
+}
